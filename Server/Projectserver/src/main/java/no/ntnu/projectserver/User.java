@@ -98,6 +98,9 @@ public class User implements Serializable {
         return created;
     }
 
+    public Long getId() {
+        return id;
+    }
     
    
 }

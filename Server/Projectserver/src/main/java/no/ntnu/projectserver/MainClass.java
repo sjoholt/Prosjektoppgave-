@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Sindre
+ * @author Tungrocken
  */
 
 @Stateless
@@ -32,12 +32,14 @@ public class MainClass {
     @PersistenceContext
     EntityManager em;
     
-    @Resource(mappedName="jdbc/projectdb")
+    @Resource(mappedName="jdbc/project")
     DataSource dataSource;
     
-    @GET
+     @GET
     @Path("users")
     public List<User> getAllUsers() {
+        
         return em.createQuery("select u from User u",User.class).getResultList();
     }
+    
 }
