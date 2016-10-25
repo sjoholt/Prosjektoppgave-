@@ -12,29 +12,20 @@ package no.ntnu.projectserver;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-/**
- *
- * @author mikael
- */
+
+
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+//husk å legge til dependency for entity! (drop and create)
 @Entity
 @Table(name = "APPUSER")
 public class User implements Serializable {

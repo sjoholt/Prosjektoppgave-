@@ -5,11 +5,13 @@
  */
 package no.ntnu.projectserver;
 
+import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -20,8 +22,10 @@ import javax.ws.rs.core.MediaType;
  */
 
 @Stateless
-@Path("app")
+@Path("projectdb")
 @Produces(MediaType.APPLICATION_JSON)
+
+
 
 public class MainClass {
     
@@ -31,4 +35,9 @@ public class MainClass {
     @Resource(mappedName="jdbc/projectdb")
     DataSource dataSource;
     
+    @GET
+    @Path("users")
+    public List<User> getAllUsers() {
+        return em.createQuery("select u from User u",User.class).getResultList();
+    }
 }

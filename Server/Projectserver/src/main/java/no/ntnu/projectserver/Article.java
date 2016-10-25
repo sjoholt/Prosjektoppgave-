@@ -7,8 +7,10 @@ package no.ntnu.projectserver;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -20,6 +22,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+@Entity
+@Table(name = "ARTICLE")
 public class Article implements Serializable {
     
     @Id @GeneratedValue
