@@ -49,13 +49,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_om) {
-            return true;
-        }
-        if (id == R.id.action_minside) {
-            return true;
-        }
-        if (id == R.id.action_loggut) {
+        if (id == R.id.action_settings) {
             return true;
         }
 
