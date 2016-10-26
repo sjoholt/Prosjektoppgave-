@@ -12,6 +12,10 @@
 
         <menu>
 
+            <item android:id="@+id/action_menu0"
+                android:icon="@android:drawable/ic_menu_myplaces"
+                android:title="Hjem" />
+
             <item android:id="@+id/action_menu1"
                 android:icon="@mipmap/ic_tungrocken"
                 android:title="Om Tungrocken" />
