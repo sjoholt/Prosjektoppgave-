@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Tungrocken</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_om">Om Tungrocken</string>
+    <string name="action_minside">Min side</string>
+    <string name="action_loggut">Logg ut</string>
 </resources>
