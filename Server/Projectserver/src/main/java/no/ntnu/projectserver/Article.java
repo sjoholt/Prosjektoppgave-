@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package no.ntnu.projectserver;
 
 import java.io.Serializable;
@@ -17,13 +13,14 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author Demyx-Laptop
+ * Data class holding information about article objects
+ * @author Team Tungrocken
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "ARTICLE")
+
 public class Article implements Serializable {
     
     @Id @GeneratedValue
@@ -39,6 +36,8 @@ public class Article implements Serializable {
     
     public Article() {
     }
+    
+    // Following is a basic set of setters and getters methods
 
     public Long getArticleId() {
         return articleId;
@@ -79,5 +78,4 @@ public class Article implements Serializable {
     public Date getDatePosted() {
         return datePosted;
     }  
-    
 }

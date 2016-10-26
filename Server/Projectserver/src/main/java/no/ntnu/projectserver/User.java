@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package no.ntnu.projectserver;
 
-/**
- *
- * @author Demyx-Laptop
- */
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,13 +12,18 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
+/**
+ * Data class holding information about user objects
+ * @author Team Tungrocken
+ */
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+
 //husk å legge til dependency for entity! (drop and create)
 @Entity
 @Table(name = "APPUSER")
+
 public class User implements Serializable {
     @Id @GeneratedValue
     Long id;
@@ -42,9 +38,10 @@ public class User implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     Date created = new Date();
     
-    
     public User() {
     }
+    
+    // Following is a basic set of setters and getters methods
 
     public String getEmail() {
         return email;
@@ -101,6 +98,4 @@ public class User implements Serializable {
     public Long getId() {
         return id;
     }
-    
-   
 }

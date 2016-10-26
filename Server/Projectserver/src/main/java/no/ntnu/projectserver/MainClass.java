@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package no.ntnu.projectserver;
 
 import java.util.List;
@@ -14,18 +10,19 @@ import javax.sql.DataSource;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
- *
- * @author Tungrocken
+ * This is a server solution for the Tungrocken news app for Android systems.
+ * It is a REST based server implemented with JAX-RS.
+ * 
+ * @author Team Tungrocken
  */
 
 @Stateless
-@Path("projectdb")
+@Path("app")
 @Produces(MediaType.APPLICATION_JSON)
-
-
 
 public class MainClass {
     
@@ -35,11 +32,25 @@ public class MainClass {
     @Resource(mappedName="jdbc/project")
     DataSource dataSource;
     
-     @GET
+    // Return a list of all users
+    @GET
     @Path("users")
     public List<User> getAllUsers() {
-        
-        return em.createQuery("select u from User u",User.class).getResultList();
+        return em.createQuery("SELECT u from User u",User.class).getResultList();
     }
     
+    // Search for a user by first name (should be improved?)
+    @GET
+    @Path("finduser")
+    public List<User> findUser(@QueryParam("name") String userParam) {
+        userParam = userParam.toLowerCase();
+        return em.createQuery("SELECT u FROM User u WHERE LOWER(u.firstname) LIKE LOWER(:userName)").setParameter("userName", userParam).getResultList();
+    }
+    
+    // Return a user based on ID
+    @GET
+    @Path("getuser")
+    public List<User> getUser(@QueryParam("id") Long userID) {
+        return em.createQuery("SELECT u FROM User u WHERE u.id = :paramID").setParameter("paramID", userID).getResultList();
+    }
 }
