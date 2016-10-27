@@ -45,6 +45,13 @@ public class Article implements Serializable {
     
     public Article() {
     }
+
+    public Article(String title, String ingress, String content, String photoUrl) {
+        this.title = title;
+        this.ingress = ingress;
+        this.content = content;
+        this.photoUrl = photoUrl;
+    }
     
     // Following is a basic set of setters and getters methods
 

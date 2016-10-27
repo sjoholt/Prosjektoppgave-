@@ -53,4 +53,24 @@ public class MainClass {
     public List<User> getUser(@QueryParam("id") Long userID) {
         return em.createQuery("SELECT u FROM User u WHERE u.id = :paramID").setParameter("paramID", userID).getResultList();
     }
+    @GET
+    @Path("adduser")
+            
+    // Create user in db, not as admin, but active
+    public User addUser(@QueryParam("email") String email, @QueryParam("password") String password , @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName)  {
+        User u = new User(email,password,firstName, lastName,false, true);
+        em.persist(u);
+        return u;
+    }
+    
+            
+    @GET
+    @Path("addArticle")
+          
+    // Create article in db
+    public Article addArticle(@QueryParam("title") String title, @QueryParam("ingress") String ingress , @QueryParam("content") String content, @QueryParam("photoUrl") String photoUrl)  {
+        Article a = new Article(title,ingress, content,photoUrl);
+        em.persist(a);
+        return a;
+    }
 }

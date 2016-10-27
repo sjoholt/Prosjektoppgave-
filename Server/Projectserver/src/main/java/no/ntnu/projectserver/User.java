@@ -41,6 +41,16 @@ public class User implements Serializable {
     
     public User() {
     }
+
+    public User(String email, String password, String firstName, String lastName, boolean isAdmin, boolean active) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.isAdmin = isAdmin;
+        this.active = active;
+    }
+    
     
     // Following is a basic set of setters and getters methods
 
