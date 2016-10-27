@@ -11,6 +11,7 @@ import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
  * Data class holding information about user objects
@@ -97,5 +98,17 @@ public class User implements Serializable {
 
     public Long getId() {
         return id;
+    }
+    
+    public static class UserAdapter extends XmlAdapter<Long, User> {
+        @Override
+        public User unmarshal(Long v) throws Exception {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public Long marshal(User v) throws Exception {
+            return v != null ? v.getId() : null;
+        }       
     }
 }
