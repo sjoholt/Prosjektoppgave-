@@ -3,11 +3,8 @@ package no.ntnu.projectserver;
 
 import java.io.Serializable;
 import java.util.Date;
-<<<<<<< HEAD
 import javax.persistence.Column;
-=======
 import javax.persistence.CascadeType;
->>>>>>> origin/master
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
