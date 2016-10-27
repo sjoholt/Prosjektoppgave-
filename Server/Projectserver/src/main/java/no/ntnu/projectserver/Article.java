@@ -3,6 +3,7 @@ package no.ntnu.projectserver;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -28,6 +29,7 @@ public class Article implements Serializable {
     
     String title;
     String ingress;
+    @Column(columnDefinition="clob")
     String content;
     String photoUrl;
     
