@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -50,12 +51,12 @@ public class MainClass {
     // Return a user based on ID
     @GET
     @Path("getuser")
-    public List<User> getUser(@QueryParam("id") Long userID) {
-        return em.createQuery("SELECT u FROM User u WHERE u.id = :paramID").setParameter("paramID", userID).getResultList();
+    public User getUser(@QueryParam("id") Long userID) {
+        return (User) em.createQuery("SELECT u FROM User u WHERE u.id = :paramID").setParameter("paramID", userID).getSingleResult();
     }
     
     // Create user in db, not as admin, but active
-    @GET
+    @POST
     @Path("adduser")
     public User addUser(@QueryParam("email") String email, @QueryParam("password") String password , @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName)  {
         User u = new User(email,password,firstName, lastName,false, true);
@@ -64,7 +65,7 @@ public class MainClass {
     }
     
     // Create article in db      
-    @GET
+    @POST
     @Path("addarticle") 
     public Article addArticle(@QueryParam("title") String title, @QueryParam("ingress") String ingress , @QueryParam("content") String content, @QueryParam("photoUrl") String photoUrl)  {
         Article a = new Article(title,ingress, content,photoUrl);
@@ -75,8 +76,8 @@ public class MainClass {
     // Return a article based on ID
     @GET
     @Path("getarticle")
-    public List<Article> getArticle(@QueryParam("id") Long articleID) {
-        return em.createQuery("SELECT u FROM Article u WHERE u.articleId = :paramID").setParameter("paramID", articleID).getResultList();
+    public Article getArticle(@QueryParam("id") Long articleID) {
+        return (Article)em.createQuery("SELECT u FROM Article u WHERE u.articleId = :paramID").setParameter("paramID", articleID).getSingleResult();
     }
     
     // Return articles based on search (title only)
@@ -84,6 +85,18 @@ public class MainClass {
     @Path("findarticle")
     public List<Article> findArticle(@QueryParam("search") String articleParam) {
         articleParam = articleParam.toLowerCase();
-        return em.createQuery("SELECT u FROM Article u WHERE LOWER(u.title) LIKE LOWER(:articleName) OR LOWER(u.ingress) LIKE LOWER(:articleName)").setParameter("articleName","%"+articleParam+"%").getResultList();
+        return em.createQuery("SELECT u FROM Article u WHERE LOWER(u.title) LIKE LOWER(:articleName) OR LOWER(u.ingress) LIKE LOWER(:articleName) OR LOWER(u.content) LIKE LOWER(:articleName)").setParameter("articleName","%"+articleParam+"%").getResultList();
+    }
+    
+    // Change active state for user.
+    @GET
+    @Path("alteractive")
+    public User userState(@QueryParam("change") Long alterParam) {
+
+        User u = em.find(User.class, alterParam);
+        if(u.isActive()){u.setActive(false);}
+        else if(!u.isActive()){u.setActive(true);}
+        em.merge(u);
+        return u;
     }
 }
