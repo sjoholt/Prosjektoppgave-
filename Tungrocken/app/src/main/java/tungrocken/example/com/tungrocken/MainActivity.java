@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         // Håndtering av visning og klikk på hamburgermeny
-        hamburgerMenu hm = new hamburgerMenu();
+        HamburgerMenu hm = new HamburgerMenu();
         Intent i = hm.getHamburgerMenu(id, this.getApplicationContext());
         if(i != null) {
             startActivity(i);
