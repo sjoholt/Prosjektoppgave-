@@ -49,15 +49,11 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if(id == R.id.action_menu0) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            return true;
-        }
-
-        if(id == R.id.action_menu1) {
-            Intent intent = new Intent(this, OmTungrocken.class);
-            startActivity(intent);
+        // Håndtering av visning og klikk på hamburgermeny
+        hamburgerMenu hm = new hamburgerMenu();
+        Intent i = hm.getHamburgerMenu(id, this.getApplicationContext());
+        if(i != null) {
+            startActivity(i);
             return true;
         }
 
