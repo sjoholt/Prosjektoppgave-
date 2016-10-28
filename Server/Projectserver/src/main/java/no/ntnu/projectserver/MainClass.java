@@ -44,7 +44,7 @@ public class MainClass {
     @Path("finduser")
     public List<User> findUser(@QueryParam("name") String userParam) {
         userParam = userParam.toLowerCase();
-        return em.createQuery("SELECT u FROM User u WHERE LOWER(u.firstName) LIKE LOWER(:userName) OR LOWER(u.lastName) LIKE LOWER(:userName)").setParameter("userName",userParam+"%").getResultList();
+        return em.createQuery("SELECT u FROM User u WHERE LOWER(u.firstName) LIKE LOWER(:userName) OR LOWER(u.lastName) LIKE LOWER(:userName)").setParameter("userName","%"+userParam+"%").getResultList();
     }
     
     // Return a user based on ID
@@ -84,6 +84,6 @@ public class MainClass {
     @Path("findarticle")
     public List<Article> findArticle(@QueryParam("search") String articleParam) {
         articleParam = articleParam.toLowerCase();
-        return em.createQuery("SELECT u FROM Article u WHERE LOWER(u.title) LIKE LOWER(:articleName) OR LOWER(u.ingress) LIKE LOWER(:articleName)").setParameter("articleName",articleParam+"%").getResultList();
+        return em.createQuery("SELECT u FROM Article u WHERE LOWER(u.title) LIKE LOWER(:articleName) OR LOWER(u.ingress) LIKE LOWER(:articleName)").setParameter("articleName","%"+articleParam+"%").getResultList();
     }
 }
