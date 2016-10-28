@@ -56,7 +56,7 @@ public class MainClass {
     }
     
     // Create user in db, not as admin, but active
-    @POST
+    @GET
     @Path("adduser")
     public User addUser(@QueryParam("email") String email, @QueryParam("password") String password , @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName)  {
         User u = new User(email,password,firstName, lastName,false, true);
@@ -65,10 +65,10 @@ public class MainClass {
     }
     
     // Create article in db      
-    @POST
+    @GET
     @Path("addarticle") 
-    public Article addArticle(@QueryParam("title") String title, @QueryParam("ingress") String ingress , @QueryParam("content") String content, @QueryParam("photoUrl") String photoUrl)  {
-        Article a = new Article(title,ingress, content,photoUrl);
+    public Article addArticle(@QueryParam("title") String title, @QueryParam("ingress") String ingress , @QueryParam("content") String content, @QueryParam("photoUrl") String photoUrl, @QueryParam("youtubeUrl") String youtubeUrl)  {
+        Article a = new Article(title,ingress, content,photoUrl, youtubeUrl);
         em.persist(a);
         return a;
     }
@@ -78,6 +78,12 @@ public class MainClass {
     @Path("getarticle")
     public Article getArticle(@QueryParam("id") Long articleID) {
         return (Article)em.createQuery("SELECT u FROM Article u WHERE u.articleId = :paramID").setParameter("paramID", articleID).getSingleResult();
+    }
+    // Return all articles
+    @GET
+    @Path("articles")
+    public List<Article> getArticles() {
+        return em.createQuery("SELECT a FROM Article a", Article.class).getResultList();
     }
     
     // Return articles based on search (title only)
@@ -94,8 +100,11 @@ public class MainClass {
     public User userState(@QueryParam("change") Long alterParam) {
 
         User u = em.find(User.class, alterParam);
-        if(u.isActive()){u.setActive(false);}
-        else if(!u.isActive()){u.setActive(true);}
+        if (u.isActive()) {
+            u.setActive(false);
+        } else if (!u.isActive()) {
+            u.setActive(true);
+        }
         em.merge(u);
         return u;
     }

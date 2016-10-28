@@ -35,6 +35,7 @@ public class Article implements Serializable {
     @Column(columnDefinition="clob")
     String content;
     String photoUrl;
+    String youtubeUrl;
     
     @XmlJavaTypeAdapter(User.UserAdapter.class)
     @ManyToOne(optional = false,cascade = CascadeType.PERSIST)
@@ -46,11 +47,12 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public Article(String title, String ingress, String content, String photoUrl) {
+    public Article(String title, String ingress, String content, String photoUrl, String youtubeUrl) {
         this.title = title;
         this.ingress = ingress;
         this.content = content;
         this.photoUrl = photoUrl;
+        this.youtubeUrl = youtubeUrl;
     }
     
     // Following is a basic set of setters and getters methods
@@ -94,4 +96,13 @@ public class Article implements Serializable {
     public Date getDatePosted() {
         return datePosted;
     }  
+
+    public String getYoutubeUrl() {
+        return youtubeUrl;
+    }
+
+    public void setYoutubeUrl(String youtubeUrl) {
+        this.youtubeUrl = youtubeUrl;
+    }
+    
 }
