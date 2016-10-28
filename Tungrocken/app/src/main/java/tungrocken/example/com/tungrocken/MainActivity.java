@@ -17,12 +17,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Oppsett av toolbar
+        // Oppsett av toolbar (uten logoclicklistener)
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.toolbarlogo);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setNavigationIcon(R.drawable.toolbarlogo);
 
         // Oppsett av floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
