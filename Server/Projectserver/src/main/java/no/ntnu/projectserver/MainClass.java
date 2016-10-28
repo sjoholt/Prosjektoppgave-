@@ -53,24 +53,37 @@ public class MainClass {
     public List<User> getUser(@QueryParam("id") Long userID) {
         return em.createQuery("SELECT u FROM User u WHERE u.id = :paramID").setParameter("paramID", userID).getResultList();
     }
+    
+    // Create user in db, not as admin, but active
     @GET
     @Path("adduser")
-            
-    // Create user in db, not as admin, but active
     public User addUser(@QueryParam("email") String email, @QueryParam("password") String password , @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName)  {
         User u = new User(email,password,firstName, lastName,false, true);
         em.persist(u);
         return u;
     }
     
-            
+    // Create article in db      
     @GET
-    @Path("addArticle")
-          
-    // Create article in db
+    @Path("addarticle") 
     public Article addArticle(@QueryParam("title") String title, @QueryParam("ingress") String ingress , @QueryParam("content") String content, @QueryParam("photoUrl") String photoUrl)  {
         Article a = new Article(title,ingress, content,photoUrl);
         em.persist(a);
         return a;
+    }
+    
+    // Return a article based on ID
+    @GET
+    @Path("getarticle")
+    public List<Article> getArticle(@QueryParam("id") Long articleID) {
+        return em.createQuery("SELECT u FROM Article u WHERE u.articleId = :paramID").setParameter("paramID", articleID).getResultList();
+    }
+    
+    // Return articles based on search (title only)
+    @GET
+    @Path("findarticle")
+    public List<Article> findArticle(@QueryParam("search") String articleParam) {
+        articleParam = articleParam.toLowerCase();
+        return em.createQuery("SELECT u FROM Article u WHERE LOWER(u.title) LIKE LOWER(:articleName) OR LOWER(u.ingress) LIKE LOWER(:articleName)").setParameter("articleName",articleParam+"%").getResultList();
     }
 }
