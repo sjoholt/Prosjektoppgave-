@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tungrocken.example.com.tungrocken">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_tungrocken"
@@ -22,6 +24,10 @@
         <activity
             android:name=".OmTungrocken"
             android:label="@string/title_activity_om_tungrocken"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ArticleActivity"
+            android:label="@string/title_activity_article"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
