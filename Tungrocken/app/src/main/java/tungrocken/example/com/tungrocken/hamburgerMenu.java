@@ -7,9 +7,9 @@ import android.content.Intent;
  * Created by Team Tungrocken on 28.10.2016.
  */
 
-public class HamburgerMenu {
+public class hamburgerMenu {
 
-    public HamburgerMenu() {
+    public hamburgerMenu() {
     }
 
     public Intent getHamburgerMenu(int id, Context c) {

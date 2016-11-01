@@ -13,8 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.List;
-import tungrocken.example.com.tungrocken.LoadArticles;
-import tungrocken.example.com.tungrocken.domain.Article;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,10 +29,35 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        setContentView(R.layout.content_main);
+
+        final ListView lv = (ListView) findViewById(R.id.listw);
+
+
+        new LoadArticles(new LoadArticles.Callback() {
+            @Override
+            public void update(final List<LoadArticles.Article> articles) {
+                // Update ui
+                ArrayAdapter<LoadArticles.Article> arrayAdapter = new ArrayAdapter<LoadArticles.Article>(MainActivity.this, android.R.layout.simple_list_item_1, articles);
+                //ArticleAdapter arrayAdapter = new ArticleAdapter(MainActivity.this,articles);
+                lv.setAdapter(arrayAdapter);
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        Log.i("this", articles.get(position).title.toString());
+                    }
+                });
+
+            }
+        }).execute("http://10.16.5.95:8080/Projectserver/services/app/articles");
 
 
 
-    }
+
+
+
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         // Håndtering av visning og klikk på hamburgermeny
-        HamburgerMenu hm = new HamburgerMenu();
+        hamburgerMenu hm = new hamburgerMenu();
         Intent i = hm.getHamburgerMenu(id, this.getApplicationContext());
         if(i != null) {
             startActivity(i);

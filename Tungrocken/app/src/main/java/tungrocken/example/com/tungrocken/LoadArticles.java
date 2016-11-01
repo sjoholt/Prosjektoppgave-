@@ -24,6 +24,8 @@ import android.os.AsyncTask;
         import java.util.Date;
         import java.util.List;
 
+import tungrocken.example.com.tungrocken.domain.User;
+
 //import tungrocken.example.com.tungrocken.domain.User.java;
 
 /**
@@ -91,12 +93,16 @@ public class LoadArticles extends AsyncTask<String,Long,List<LoadArticles.Articl
     public static class Article {
         Long id;
 
-        String email;
-        String password;
-        String firstName;
-        String lastName;
-        boolean isAdmin;
-        boolean active;
-        Date created;
+        Long articleId;
+
+        String title;
+        String ingress;
+        String content;
+        String photoUrl;
+        String youtubeUrl;
+
+        User owner;
+
+        Date datePosted;
     }
 }

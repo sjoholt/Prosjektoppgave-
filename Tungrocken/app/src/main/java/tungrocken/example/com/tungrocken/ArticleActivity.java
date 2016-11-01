@@ -52,7 +52,7 @@ public class ArticleActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        Log.i("this", articles.get(position).firstName.toString());
+                        Log.i("this", articles.get(position).title.toString());
                     }
                 });
 

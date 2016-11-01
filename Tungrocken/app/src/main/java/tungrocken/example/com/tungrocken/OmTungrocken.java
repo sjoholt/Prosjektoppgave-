@@ -43,7 +43,7 @@ public class OmTungrocken extends AppCompatActivity {
         int id = item.getItemId();
 
         // Håndtering av visning og klikk på hamburgermeny
-        HamburgerMenu hm = new HamburgerMenu();
+        hamburgerMenu hm = new hamburgerMenu();
         Intent i = hm.getHamburgerMenu(id, this.getApplicationContext());
         if(i != null) {
             startActivity(i);
