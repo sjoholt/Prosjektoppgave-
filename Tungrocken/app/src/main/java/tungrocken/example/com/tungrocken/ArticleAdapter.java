@@ -24,6 +24,7 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
         super(context, 0, articleList);
     }
 
+
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

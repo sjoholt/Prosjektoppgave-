@@ -1,12 +1,13 @@
 package tungrocken.example.com.tungrocken.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Demyx-Laptop on 01.11.2016.
  */
 
-public class Article {
+public class Article implements Serializable {
 
     Long articleId;
 

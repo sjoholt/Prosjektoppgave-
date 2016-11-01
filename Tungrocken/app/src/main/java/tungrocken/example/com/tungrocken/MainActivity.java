@@ -9,10 +9,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.List;
+
+import tungrocken.example.com.tungrocken.domain.Article;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,14 +39,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void update(final List<LoadArticles.Article> articles) {
                 // Update ui
-                ArrayAdapter<LoadArticles.Article> arrayAdapter = new ArrayAdapter<LoadArticles.Article>(MainActivity.this, android.R.layout.simple_list_item_1, articles);
-                //ArticleAdapter arrayAdapter = new ArticleAdapter(MainActivity.this,articles);
+                //ArrayAdapter<LoadArticles.Article> arrayAdapter = new ArrayAdapter<LoadArticles.Article>(MainActivity.this, android.R.layout.simple_list_item_1, articles);
+                ArticleAdapter arrayAdapter = new ArticleAdapter(getApplicationContext(), articles);
                 lv.setAdapter(arrayAdapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        Log.i("this", articles.get(position).title.toString());
+                        Log.i("this", articles.get(position).title);
                     }
                 });
 
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         // Håndtering av visning og klikk på hamburgermeny
-        hamburgerMenu hm = new hamburgerMenu();
+        HamburgerMenu hm = new HamburgerMenu();
         Intent i = hm.getHamburgerMenu(id, this.getApplicationContext());
         if(i != null) {
             startActivity(i);

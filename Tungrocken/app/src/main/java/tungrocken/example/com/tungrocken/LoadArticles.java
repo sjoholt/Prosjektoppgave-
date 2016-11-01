@@ -29,7 +29,7 @@ import tungrocken.example.com.tungrocken.domain.User;
 //import tungrocken.example.com.tungrocken.domain.User.java;
 
 /**
- * Created by mikael on 14.10.2016.
+ * Created by Team Tungrocken
  */
 
 public class LoadArticles extends AsyncTask<String,Long,List<LoadArticles.Article>> {
