@@ -14,8 +14,25 @@
     tools:showIn="@layout/activity_om_tungrocken">
 
     <TextView
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tungrocken fucking rules!" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/aboutHeader" />
 
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1000"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="outsideInset"
+        android:layout_below="@+id/aboutHeader"
+        android:layout_alignParentStart="true"
+        android:id="@+id/aboutContent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
