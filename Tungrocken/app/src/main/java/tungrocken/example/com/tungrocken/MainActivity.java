@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.List;
@@ -28,33 +30,14 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationIcon(R.drawable.toolbarlogo);
 
-
-
-        setContentView(R.layout.content_main);
-
-        final ListView lv = (ListView) findViewById(R.id.listw);
-
-
-        new LoadArticles(new LoadArticles.Callback() {
+        final Button btn = (Button) findViewById(R.id.articleButton);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void update(final List<LoadArticles.Article> articles) {
-                // Update ui
-                //ArrayAdapter<LoadArticles.Article> arrayAdapter = new ArrayAdapter<LoadArticles.Article>(MainActivity.this, android.R.layout.simple_list_item_1, articles);
-                ArticleAdapter arrayAdapter = new ArticleAdapter(getApplicationContext(), articles);
-                lv.setAdapter(arrayAdapter);
-                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                        Log.i("this", articles.get(position).title);
-                    }
-                });
-
+            public void onClick(View v2) {
+                Intent i = new Intent(MainActivity.this, ArticleActivity.class);
+                startActivity(i);
             }
-        }).execute("http://10.16.5.95:8080/Projectserver/services/app/articles");
-
-
-
+        });
 
 
 

@@ -24,15 +24,14 @@ import android.os.AsyncTask;
         import java.util.Date;
         import java.util.List;
 
-import tungrocken.example.com.tungrocken.domain.User;
+import tungrocken.example.com.tungrocken.domain.Article;
 
-//import tungrocken.example.com.tungrocken.domain.User.java;
 
 /**
  * Created by Team Tungrocken
  */
 
-public class LoadArticles extends AsyncTask<String,Long,List<LoadArticles.Article>> {
+public class LoadArticles extends AsyncTask<String,Long,List<Article>> {
     static SimpleDateFormat DF      = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
     static SimpleDateFormat DFSHORT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
 
@@ -81,7 +80,7 @@ public class LoadArticles extends AsyncTask<String,Long,List<LoadArticles.Articl
             if(con != null) {con.disconnect();}
         }
 
-        return (List) result;
+        return result;
     }
 
 
@@ -90,19 +89,5 @@ public class LoadArticles extends AsyncTask<String,Long,List<LoadArticles.Articl
         callback.update(articles);
     }
 
-    public static class Article {
-        Long id;
 
-        Long articleId;
-
-        String title;
-        String ingress;
-        String content;
-        String photoUrl;
-        String youtubeUrl;
-
-        User owner;
-
-        Date datePosted;
-    }
 }
