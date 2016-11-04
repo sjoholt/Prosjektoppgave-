@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationIcon(R.drawable.toolbarlogo);
 
+        // demoknapp for artikkelvisning
         final Button btn2 = (Button) findViewById(R.id.articlesBtn);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(a);
             }
         });
-}
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
