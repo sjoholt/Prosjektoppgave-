@@ -13,26 +13,38 @@
     tools:context="tungrocken.example.com.tungrocken.OmTungrocken"
     tools:showIn="@layout/activity_om_tungrocken">
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:id="@+id/aboutHeader" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="1000"
-        android:scrollbars="vertical"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
         android:scrollbarStyle="outsideInset"
-        android:layout_below="@+id/aboutHeader"
-        android:layout_alignParentStart="true"
-        android:id="@+id/aboutContent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:id="@+id/aboutHeader" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/aboutHeader"
+                android:layout_alignParentStart="true"
+                android:id="@+id/aboutContent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -66,7 +66,6 @@ public class OmTungrocken extends AppCompatActivity {
     public void writeAboutContent() {
         TextView heading = (TextView)findViewById(R.id.aboutHeader);
         TextView about = (TextView)findViewById(R.id.aboutContent);
-        about.setMovementMethod(new ScrollingMovementMethod());
 
         String contentString = "<b>Tungrocken er en fiktiv musikkavis, laget for folk som liker rock av tyngre sort!</b>" +
                 "<br><br>Det hele begynte som et gruppeprosjekt i faget Datamodellering og Databaseapplikasjoner på ingeniørstudiet på NTNU i Ålesund, " +
