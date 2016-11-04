@@ -111,6 +111,8 @@ public class MainClass {
         return u;
     }
     
+    @GET
+    @Path("login")
     public String login(@QueryParam("email") String emailParam, @QueryParam("password") String passwordParam)
     {
         String sessionId = null;
