@@ -1,12 +1,10 @@
 package tungrocken.example.com.tungrocken;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,7 +36,9 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
         }
 
         ImageView photoUrl = (ImageView) convertView.findViewById(R.id.photoUrl);
+
         Picasso.with(this.getContext()).load("http://10.16.5.58:8080/Projectserver" + article.getPhotoUrl()+"").into(photoUrl);
+
 
         TextView title = (TextView)convertView.findViewById(R.id.title2);
         title.setText(article.getTitle());

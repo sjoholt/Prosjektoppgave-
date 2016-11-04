@@ -47,11 +47,12 @@
         android:id="@+id/youtubeUrl" />
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="false"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:layout_below="@+id/title2"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/photoUrl" />
+        android:id="@+id/photoUrl"
+         />
 
 </RelativeLayout>
