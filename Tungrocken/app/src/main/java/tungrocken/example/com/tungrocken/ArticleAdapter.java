@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import tungrocken.example.com.tungrocken.domain.Article;
@@ -35,16 +37,9 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.content_article,parent,false);
         }
 
-        WebView photoUrl = (WebView) convertView.findViewById(R.id.photoUrl);
+        ImageView photoUrl = (ImageView) convertView.findViewById(R.id.photoUrl);
+        Picasso.with(this.getContext()).load("http://10.16.5.58:8080/Projectserver" + article.getPhotoUrl()+"").into(photoUrl);
 
-        photoUrl.getSettings().setLoadWithOverviewMode(true);
-        photoUrl.getSettings().setUseWideViewPort(true);
-
-
-        String myURL = "http://10.16.5.58:8080/Projectserver" + article.getPhotoUrl();
-        photoUrl.loadUrl(myURL);
-
-        //photoUrl.setImageURI(Uri.parse(article.getPhotoUrl()));
         TextView title = (TextView)convertView.findViewById(R.id.title2);
         title.setText(article.getTitle());
         TextView ingress = (TextView)convertView.findViewById(R.id.ingress);

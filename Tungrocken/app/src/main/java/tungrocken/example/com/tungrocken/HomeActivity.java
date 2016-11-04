@@ -50,45 +50,25 @@ public class HomeActivity extends AppCompatActivity {
             public void update(final List<Article> articles) {
                 // Update ui
 
-                //linjer for adapter til hovedlisten, ikke fjern!!
-
                 //ArrayAdapter<Article> arrayAdapter = new ArrayAdapter<Article>(HomeActivity.this, android.R.layout.simple_list_item_1, articles);
                 ArticleAdapter arrayAdapter = new ArticleAdapter(getApplicationContext(), articles);
                 lv.setAdapter(arrayAdapter);
+
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        Log.i("this", articles.get(position).getContent());
+                        Log.i("this", articles.get(position).getArticleId().toString());
+                        Intent i = new Intent(HomeActivity.this, ArticleActivity.class);
+
+                        // bundle sender over info fra en activity til en annen
+                        Bundle bundle = new Bundle();
+                        bundle.putLong("aID",articles.get(position).getArticleId());
+                        i.putExtras(bundle);
+
+                        startActivity(i);
                     }
                 });
-
-
-
-
-                //Pass på at IP er rett
-
-                /*
-                Article article = articles.get(0);
-                WebView photoUrl = (WebView) findViewById(R.id.photoUrl);
-
-                photoUrl.getSettings().setLoadWithOverviewMode(true);
-                photoUrl.getSettings().setUseWideViewPort(true);
-
-
-                String myURL = "http://10.16.5.58:8080/Projectserver" + article.getPhotoUrl();
-                photoUrl.loadUrl(myURL);
-                TextView title = (TextView)findViewById(R.id.title2);
-                title.setText(article.getTitle());
-                TextView ingress = (TextView)findViewById(R.id.ingress);
-                ingress.setText(article.getIngress());
-                TextView content = (TextView)findViewById(R.id.content);
-                content.setText(article.getContent());
-                TextView youtubeUrl = (TextView)findViewById(R.id.youtubeUrl);
-                youtubeUrl.setText(article.getYoutubeUrl());
-                */
-
-
             }
         }).execute("http://10.16.5.58:8080/Projectserver/services/app/articles");
 

@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -45,43 +47,20 @@ public class ArticleActivity extends AppCompatActivity {
             }
         });
 
-
-
-        //final ListView lv = (ListView) findViewById(R.id.listw);
-
+        Bundle bundle = getIntent().getExtras();
+        Long id = bundle.getLong("aID");
 
         new LoadArticles(new LoadArticles.Callback() {
             @Override
             public void update(final List<Article> articles) {
                 // Update ui
 
-                //linjer for adapter til hovedlisten, ikke fjern!!
-
-                /*ArrayAdapter<Article> arrayAdapter = new ArrayAdapter<Article>(MainActivity.this, android.R.layout.simple_list_item_1, articles);
-                ArticleAdapter arrayAdapter = new ArticleAdapter(getApplicationContext(), articles);
-                lv.setAdapter(arrayAdapter);
-                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                        Log.i("this", articles.get(position).getTitle());
-                    }
-                });
-                */
-
-
-
                 //Pass på at IP er rett
-
                 Article article = articles.get(0);
-                WebView photoUrl = (WebView) findViewById(R.id.photoUrl);
 
-                photoUrl.getSettings().setLoadWithOverviewMode(true);
-                photoUrl.getSettings().setUseWideViewPort(true);
+                ImageView photoUrl = (ImageView) findViewById(R.id.photoUrl);
+                Picasso.with(getApplicationContext()).load("http://10.16.5.58:8080/Projectserver" + article.getPhotoUrl()).into(photoUrl);
 
-
-                String myURL = "http://10.16.5.58:8080/Projectserver" + article.getPhotoUrl();
-                photoUrl.loadUrl(myURL);
                 TextView title = (TextView)findViewById(R.id.title2);
                 title.setText(article.getTitle());
                 TextView ingress = (TextView)findViewById(R.id.ingress);
@@ -91,12 +70,10 @@ public class ArticleActivity extends AppCompatActivity {
                 TextView youtubeUrl = (TextView)findViewById(R.id.youtubeUrl);
                 youtubeUrl.setText(article.getYoutubeUrl());
 
-
             }
-        }).execute("http://10.16.5.58:8080/Projectserver/services/app/articles");
+        }).execute("http://10.16.5.58:8080/Projectserver/services/app/getarticle?id="+id+"");
 
     }
-
 
 
     @Override

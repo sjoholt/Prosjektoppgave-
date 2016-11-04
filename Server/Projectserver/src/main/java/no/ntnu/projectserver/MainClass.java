@@ -78,8 +78,8 @@ public class MainClass {
     // Return a article based on ID
     @GET
     @Path("getarticle")
-    public Article getArticle(@QueryParam("id") Long articleID) {
-        return (Article)em.createQuery("SELECT u FROM Article u WHERE u.articleId = :paramID").setParameter("paramID", articleID).getSingleResult();
+    public List<Article>getArticle(@QueryParam("id") Long articleID) {
+        return em.createQuery("SELECT u FROM Article u WHERE u.articleId = :paramID").setParameter("paramID", articleID).getResultList();
     }
     // Return all articles
     @GET

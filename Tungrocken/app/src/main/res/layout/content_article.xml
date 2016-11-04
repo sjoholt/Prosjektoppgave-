@@ -46,11 +46,12 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/youtubeUrl" />
 
-    <WebView
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/photoUrl"
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title2" />
+        android:layout_alignParentBottom="false"
+        android:layout_below="@+id/title2"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/photoUrl" />
 
 </RelativeLayout>

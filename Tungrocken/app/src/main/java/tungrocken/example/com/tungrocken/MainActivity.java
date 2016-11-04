@@ -30,14 +30,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationIcon(R.drawable.toolbarlogo);
 
-        final Button btn = (Button) findViewById(R.id.articleButton);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v2) {
-                Intent i = new Intent(MainActivity.this, ArticleActivity.class);
-                startActivity(i);
-            }
-        });
         final Button btn2 = (Button) findViewById(R.id.articlesBtn);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(a);
             }
         });
-
-
-
 }
 
     @Override
