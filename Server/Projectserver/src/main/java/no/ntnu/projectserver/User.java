@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 public class User implements Serializable {
     @Id @GeneratedValue
     Long id;
-    
+    String sessionId;
     String email;
     String password;
     String firstName;
@@ -49,11 +49,21 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.isAdmin = isAdmin;
         this.active = active;
+        sessionId = ""+0;
     }
     
     
     // Following is a basic set of setters and getters methods
-
+    public String getSessionId()
+    {
+        return sessionId;
+    }
+    
+    public void setSessionId(String sessionId)
+    {
+        this.sessionId = sessionId;
+    }
+    
     public String getEmail() {
         return email;
     }

@@ -111,19 +111,43 @@ public class MainClass {
         return u;
     }
     
+    
+    
     @GET
     @Path("login")
-    public String login(@QueryParam("email") String emailParam, @QueryParam("password") String passwordParam)
+    public User login(@QueryParam("email") String emailParam, @QueryParam("password") String passwordParam)
     {
-        String sessionId = null;
+        User logedIn = null;
         List<User> users = em.createQuery("SELECT u FROM User u WHERE LOWER(u.email) LIKE LOWER(:emailParam) AND LOWER(u.password) LIKE LOWER(:passwordParam)").setParameter("emailParam","%"+emailParam+"%").setParameter("passwordParam","%"+passwordParam+"%").getResultList();
         if(users.size()>0)
         {
-            User u = users.get(0);
-            Random random = new Random();
-            int idAddition = random.nextInt(1000);
-            sessionId = ""+u.getId().toString()+idAddition;
+            logedIn = users.get(0);
+            
         }
+        return logedIn;
+    }
+    
+    @GET
+    @Path("session")
+    public String getSessionId(@QueryParam("email") String emailParam)
+    {
+        List<String> sessions = em.createQuery("SELECT u.sessionId FROM User u WHERE LOWER(u.email) LIKE LOWER(:emailParam)").setParameter("emailParam","%"+emailParam+"%").getResultList();
+        String sessionId = sessions.get(0);
         return sessionId;
+    }
+    
+    public String createSessionId(User u)
+    {
+        String result = null;
+        String sessionId;
+        Random random = new Random();
+        int idAddition = random.nextInt(1000);
+        sessionId = ""+u.getId().toString()+idAddition;
+        if(getSessionId(u.email).equals("0"))
+        {
+            u.setSessionId(sessionId);
+            result = sessionId;
+        }
+        return result;
     }
 }
