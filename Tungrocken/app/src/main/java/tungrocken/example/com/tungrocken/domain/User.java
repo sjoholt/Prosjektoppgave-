@@ -20,6 +20,17 @@ public class User {
     public User() {
     }
 
+    public User(Long id, String email, String password, String firstName, String lastName, boolean isAdmin, boolean active, Date created) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.isAdmin = isAdmin;
+        this.active = active;
+        this.created = created;
+    }
+
     public String getEmail() {
         return email;
     }

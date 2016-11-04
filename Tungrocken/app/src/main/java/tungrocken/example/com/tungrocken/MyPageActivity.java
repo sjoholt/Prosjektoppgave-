@@ -4,9 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import tungrocken.example.com.tungrocken.domain.User;
 
 public class MyPageActivity extends AppCompatActivity {
 
@@ -26,6 +32,8 @@ public class MyPageActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
+
+        insertUserInfo(getTestUser());
     }
 
     @Override
@@ -56,6 +64,61 @@ public class MyPageActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void insertUserInfo(User u) {
+        TextView title = (TextView)findViewById(R.id.mypagetitle);
+        String titleString = "<h2>Min side</h2>";
+        title.setText(Html.fromHtml(titleString));
+
+        TextView intro = (TextView)findViewById(R.id.mypageintro);
+        String introString = "Her finner du din personlige brukerside. Denne siden gir deg informasjon om deg som bruker, og du vil ha muligheter til å gjøre endringer.";
+        intro.setText(Html.fromHtml(introString));
+
+        TextView firstname = (TextView)findViewById(R.id.mypagefirstname);
+        String firstnameString = "<strong>Fornavn:</strong>";
+        firstname.setText(Html.fromHtml(firstnameString));
+
+        TextView firstname2 = (TextView)findViewById(R.id.mypagefirstname2);
+        String firstname2String = u.getFirstName();
+        firstname2.setText(Html.fromHtml(firstname2String));
+
+        TextView lastname = (TextView)findViewById(R.id.mypagelastname);
+        String lastnameString = "<strong>Etternavn:</strong>";
+        lastname.setText(Html.fromHtml(lastnameString));
+
+        TextView lastname2 = (TextView)findViewById(R.id.mypagelastname2);
+        String lastname2String = u.getLastName();
+        lastname2.setText(Html.fromHtml(lastname2String));
+
+        TextView email = (TextView)findViewById(R.id.mypageemail);
+        String emailString = "<strong>Din e-postadresse (brukernavn):</strong>";
+        email.setText(Html.fromHtml(emailString));
+
+        TextView email2 = (TextView)findViewById(R.id.mypageemail2);
+        String email2String = u.getEmail();
+        email2.setText(Html.fromHtml(email2String));
+
+        TextView datecreated = (TextView)findViewById(R.id.mypagedate);
+        String dateString = "<strong>Din brukerkonto ble opprettet:</strong>";
+        datecreated.setText(Html.fromHtml(dateString));
+
+        TextView datecreated2 = (TextView)findViewById(R.id.mypagedate2);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE d. MMMM YYYY");
+        Date date = u.getCreated();
+        String sDate= sdf.format(date);
+
+        datecreated2.setText(Html.fromHtml(sDate));
+    }
+
+    public User getTestUser() {
+        User u = new User(Long.valueOf(123456), "sindre@sjoholt.net", "password", "Sindre", "Sjøholt", true, true, getDateCreated());
+        return u;
+    }
+
+    public Date getDateCreated() {
+        Date d = new Date();
+        return d;
     }
 
 }
