@@ -14,6 +14,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import tungrocken.example.com.tungrocken.domain.Article;
+import tungrocken.example.com.tungrocken.domain.Server;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -22,6 +23,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Server s = new Server();
+        final String ip = s.serverUrl();
+
 
         // Oppsett av toolbar - Må brukes av alle aktiviteter utenom hovedsiden
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -65,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
             }
-        }).execute("http://10.16.5.58:8080/Projectserver/services/app/articles");
+        }).execute(ip+ "/services/app/articles");
 
     }
 
