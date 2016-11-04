@@ -1,7 +1,9 @@
 
 package no.ntnu.projectserver;
 
+
 import java.util.List;
+import java.util.Random;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -38,6 +40,7 @@ public class MainClass {
     public List<User> getAllUsers() {
         return em.createQuery("SELECT u from User u",User.class).getResultList();
     }
+    
     
     // Search for a user by first or last name
     @GET
@@ -106,5 +109,19 @@ public class MainClass {
         }
         em.merge(u);
         return u;
+    }
+    
+    public String login(@QueryParam("email") String emailParam, @QueryParam("password") String passwordParam)
+    {
+        String sessionId = null;
+        List<User> users = em.createQuery("SELECT u FROM User u WHERE LOWER(u.email) LIKE LOWER(:emailParam) AND LOWER(u.password) LIKE LOWER(:passwordParam)").setParameter("emailParam","%"+emailParam+"%").setParameter("passwordParam","%"+passwordParam+"%").getResultList();
+        if(users.size()>0)
+        {
+            User u = users.get(0);
+            Random random = new Random();
+            int idAddition = random.nextInt(1000);
+            sessionId = ""+u.getId().toString()+idAddition;
+        }
+        return sessionId;
     }
 }
