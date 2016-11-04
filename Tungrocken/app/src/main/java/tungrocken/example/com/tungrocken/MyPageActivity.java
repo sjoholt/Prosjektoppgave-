@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import tungrocken.example.com.tungrocken.domain.User;
@@ -33,7 +32,10 @@ public class MyPageActivity extends AppCompatActivity {
             }
         });
 
-        insertUserInfo(getTestUser());
+        // Tar i mot hvilken bruker som er pålogget, sendt gjennom intenten
+        Intent intent = getIntent();
+        User u = (User) intent.getSerializableExtra("bruker");
+        insertUserInfo(u);
     }
 
     @Override
@@ -109,16 +111,6 @@ public class MyPageActivity extends AppCompatActivity {
         String sDate= sdf.format(date);
 
         datecreated2.setText(Html.fromHtml(sDate));
-    }
-
-    public User getTestUser() {
-        User u = new User(Long.valueOf(123456), "sindre@sjoholt.net", "password", "Sindre", "Sjøholt", true, true, getDateCreated());
-        return u;
-    }
-
-    public Date getDateCreated() {
-        Date d = new Date();
-        return d;
     }
 
 }
