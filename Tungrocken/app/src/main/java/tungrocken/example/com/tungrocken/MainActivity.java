@@ -38,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        final Button btn2 = (Button) findViewById(R.id.articlesBtn);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v3) {
+                Intent a = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(a);
+            }
+        });
 
 
 

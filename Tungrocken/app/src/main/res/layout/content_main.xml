@@ -28,4 +28,12 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:text="list articles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/articleButton"
+        android:layout_alignParentStart="true"
+        android:id="@+id/articlesBtn" />
+
 </RelativeLayout>
