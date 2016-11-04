@@ -1,4 +1,4 @@
-package tungrocken.example.com.tungrocken;
+package tungrocken.example.com.tungrocken.Loaders;
 
 import android.os.AsyncTask;
 import com.google.gson.Gson;
