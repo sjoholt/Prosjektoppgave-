@@ -13,46 +13,58 @@
     tools:context="tungrocken.example.com.tungrocken.ArticleActivity"
     tools:showIn="@layout/activity_article">
 
-    <TextView
-        android:text="TextView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/title2"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/photoUrl"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/ingress"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ingress"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/content" />
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/title2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/youtubeUrl" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_below="@+id/title2"
+                android:id="@+id/photoUrl"
+                 />
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:layout_below="@+id/title2"
-        android:id="@+id/photoUrl"
-         />
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoUrl"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/ingress"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ingress"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/content" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/youtubeUrl" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
