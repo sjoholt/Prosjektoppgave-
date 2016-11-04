@@ -5,4 +5,5 @@
     <string name="title_activity_om_tungrocken">Om Tungrocken</string>
     <string name="title_activity_article">ArticleActivity</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_my_page">Min side</string>
 </resources>

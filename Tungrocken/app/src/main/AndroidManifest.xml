@@ -32,6 +32,10 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MyPageActivity"
+            android:label="@string/title_activity_my_page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
