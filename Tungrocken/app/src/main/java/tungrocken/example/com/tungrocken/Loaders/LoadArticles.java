@@ -30,7 +30,7 @@ public class LoadArticles extends AsyncTask<String,Long,List<Article>> {
     static SimpleDateFormat DF      = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
     static SimpleDateFormat DFSHORT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
 
-    interface Callback {
+    public interface Callback {
         void update(List<Article> articles);
     }
 
