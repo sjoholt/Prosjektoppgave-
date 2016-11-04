@@ -1,4 +1,4 @@
-package tungrocken.example.com.tungrocken;
+package tungrocken.example.com.tungrocken.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import tungrocken.example.com.tungrocken.R;
 import tungrocken.example.com.tungrocken.domain.Article;
 
 /**

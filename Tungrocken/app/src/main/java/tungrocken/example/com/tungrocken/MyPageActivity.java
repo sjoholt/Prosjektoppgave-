@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.User;
 
 public class MyPageActivity extends AppCompatActivity {
