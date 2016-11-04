@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import tungrocken.example.com.tungrocken.domain.Article;
+import tungrocken.example.com.tungrocken.domain.Server;
 
 public class ArticleActivity extends AppCompatActivity {
 
@@ -23,6 +24,9 @@ public class ArticleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
+
+        Server s = new Server();
+        final String ip = s.serverUrl();
 
         // Oppsett av toolbar - Må brukes av alle aktiviteter utenom hovedsiden
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -48,7 +52,7 @@ public class ArticleActivity extends AppCompatActivity {
                 Article article = articles.get(0);
 
                 ImageView photoUrl = (ImageView) findViewById(R.id.photoUrl);
-                Picasso.with(getApplicationContext()).load("http://10.16.5.58:8080/Projectserver" + article.getPhotoUrl()).into(photoUrl);
+                Picasso.with(getApplicationContext()).load(ip + article.getPhotoUrl()).into(photoUrl);
 
                 TextView title = (TextView)findViewById(R.id.title2);
                 title.setText(article.getTitle());
@@ -60,7 +64,7 @@ public class ArticleActivity extends AppCompatActivity {
                 youtubeUrl.setText(article.getYoutubeUrl());
 
             }
-        }).execute("http://10.16.5.58:8080/Projectserver/services/app/getarticle?id="+id+"");
+        }).execute(ip+"/services/app/getarticle?id="+id+"");
 
     }
 
