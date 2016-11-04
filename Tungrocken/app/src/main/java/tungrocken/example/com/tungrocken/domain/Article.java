@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by Demyx-Laptop on 01.11.2016.
+ * Created by Team Tungrocken
  */
 
 public class Article implements Serializable {
