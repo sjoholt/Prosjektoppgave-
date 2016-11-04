@@ -37,7 +37,7 @@
                 android:scaleType="fitCenter"
                 android:layout_below="@+id/title2"
                 android:id="@+id/photoUrl"
-                 />
+                android:paddingBottom="10dp" />
 
             <TextView
                 android:text="TextView"
@@ -46,7 +46,8 @@
                 android:layout_below="@+id/photoUrl"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/ingress"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:paddingBottom="10dp" />
 
             <TextView
                 android:text="TextView"
@@ -54,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ingress"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/content" />
+                android:id="@+id/content"
+                android:paddingBottom="10dp" />
 
             <TextView
                 android:text="TextView"
