@@ -11,11 +11,13 @@ import com.google.android.youtube.player.YouTubePlayerView;
 /**
  * Created by Gaute Lokal on 08-Nov-16.
  */
-public class YoutubePlayer extends YouTubeBaseActivity {
+/*public class YoutubePlayer extends YouTubeBaseActivity {
 
     Button b;
     private YouTubePlayerView youTubePlayerView;
     private YouTubePlayer.OnInitializedListener onInitializedListener;
+    public static final String KEY = "AIzaSyC3BB6nhsBUlPGCJNRLSqCPg8vgr65Lqqk";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +42,15 @@ public class YoutubePlayer extends YouTubeBaseActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                youTubePlayerView.initialize("AIzaSyC3BB6nhsBUlPGCJNRLSqCPg8vgr65Lqqk",onInitializedListener);
+                youTubePlayerView.initialize(KEY,onInitializedListener);
             }
         });
     }
-}
+
+
+    public void pleyVideo (){
+
+    }
+}*/
 
 
