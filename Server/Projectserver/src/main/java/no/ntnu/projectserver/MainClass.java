@@ -2,6 +2,7 @@
 package no.ntnu.projectserver;
 
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +24,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * This is a server solution for the Tungrocken news app for Android systems.
@@ -42,10 +46,6 @@ public class MainClass {
     
     @Resource(mappedName="jdbc/project")
     DataSource dataSource;
-    
-    //Long id, String sessionId, String email, String firstName, String lastName, boolean isAdmin, boolean active, Date created
-    
-    
     
     // Return a list of all users
     @GET
@@ -177,7 +177,9 @@ public class MainClass {
         return result;
     }
     
-    public static class PreppedUser{
+    @XmlRootElement
+    @XmlAccessorType(XmlAccessType.FIELD)
+    public static class PreppedUser {
         Long id;
         String sessionId;
         String email;
@@ -189,7 +191,17 @@ public class MainClass {
         
         PreppedUser(Long id, String sessionId, String email, String firstName, String lastName, boolean isAdmin, boolean active, Date created)
         {
-            
+            this.id = id;
+            this.sessionId = sessionId;
+            this.email = email;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.isAdmin = isAdmin;
+            this.active = active;
+            this.created = created;
+        }
+        
+        PreppedUser() {
         }
     }
 }
