@@ -2,14 +2,23 @@
 package no.ntnu.projectserver;
 
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -33,6 +42,10 @@ public class MainClass {
     
     @Resource(mappedName="jdbc/project")
     DataSource dataSource;
+    
+    //Long id, String sessionId, String email, String firstName, String lastName, boolean isAdmin, boolean active, Date created
+    
+    
     
     // Return a list of all users
     @GET
@@ -114,17 +127,30 @@ public class MainClass {
     
     
     @GET
-    @Path("login")
+    @Path("checkCredentials")
     public User login(@QueryParam("email") String emailParam, @QueryParam("password") String passwordParam)
     {
-        User logedIn = null;
+        User loggedIn = null;
         List<User> users = em.createQuery("SELECT u FROM User u WHERE LOWER(u.email) LIKE LOWER(:emailParam) AND LOWER(u.password) LIKE LOWER(:passwordParam)").setParameter("emailParam","%"+emailParam+"%").setParameter("passwordParam","%"+passwordParam+"%").getResultList();
         if(users.size()>0)
         {
-            logedIn = users.get(0);
+            loggedIn = users.get(0);
             
         }
-        return logedIn;
+        return loggedIn;
+    }
+    
+    @GET
+    @Path("login")
+    public PreppedUser sendUser(@QueryParam("email") String emailParam,@QueryParam("password") String passwordParam)
+    {
+        PreppedUser result = null;
+        User u = login(emailParam,passwordParam);
+        if(u != null)
+        {
+            result = new PreppedUser(u.getId(),u.getSessionId(),u.getEmail(),u.getFirstName(),u.getLastName(),u.isIsAdmin(),u.isActive(),u.getCreated());
+        }
+        return result;
     }
     
     @GET
@@ -149,5 +175,21 @@ public class MainClass {
             result = sessionId;
         }
         return result;
+    }
+    
+    public static class PreppedUser{
+        Long id;
+        String sessionId;
+        String email;
+        String firstName;
+        String lastName;
+        boolean isAdmin;
+        boolean active;
+        Date created = new Date();
+        
+        PreppedUser(Long id, String sessionId, String email, String firstName, String lastName, boolean isAdmin, boolean active, Date created)
+        {
+            
+        }
     }
 }
