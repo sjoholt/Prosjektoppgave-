@@ -13,86 +13,99 @@
     tools:context="tungrocken.example.com.tungrocken.MyPageActivity"
     tools:showIn="@layout/activity_my_page">
 
-    <TextView
-        android:text="Fornavn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mypageintro"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp"
-        android:id="@+id/mypagefirstname" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <TextView
-        android:text="Tittel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/mypagetitle" />
+            <TextView
+            android:text="Tittel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/mypagetitle" />
 
-    <TextView
-        android:text="Introtekst"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mypageintro"
-        android:layout_below="@+id/mypagetitle"
-        android:layout_alignParentStart="true" />
+            <TextView
+            android:text="Introtekst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mypageintro"
+            android:layout_below="@+id/mypagetitle"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="Fornavn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mypagefirstname2"
-        android:layout_below="@+id/mypagefirstname"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:text="Fornavn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mypageintro"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="16dp"
+                android:id="@+id/mypagefirstname" />
 
-    <TextView
-        android:text="Etternavn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mypagefirstname2"
-        android:layout_alignParentStart="true"
-        android:id="@+id/mypagelastname" />
+            <TextView
+            android:text="Fornavn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mypagefirstname2"
+            android:layout_below="@+id/mypagefirstname"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="Etternavn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mypagelastname"
-        android:layout_alignParentStart="true"
-        android:id="@+id/mypagelastname2" />
+        <TextView
+            android:text="Etternavn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mypagefirstname2"
+            android:layout_alignParentStart="true"
+            android:id="@+id/mypagelastname" />
 
-    <TextView
-        android:text="E-post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mypagelastname2"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp"
-        android:id="@+id/mypageemail" />
+        <TextView
+            android:text="Etternavn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mypagelastname"
+            android:layout_alignParentStart="true"
+            android:id="@+id/mypagelastname2" />
 
-    <TextView
-        android:text="E-post2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:id="@+id/mypageemail2"
-        android:layout_below="@+id/mypageemail" />
+        <TextView
+            android:text="E-post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mypagelastname2"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="16dp"
+            android:id="@+id/mypageemail" />
 
-    <TextView
-        android:text="Registrert bruker siden"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mypageemail2"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="24dp"
-        android:id="@+id/mypagedate" />
+        <TextView
+            android:text="E-post2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:id="@+id/mypageemail2"
+            android:layout_below="@+id/mypageemail" />
 
-    <TextView
-        android:text="Registrert bruker siden"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mypagedate"
-        android:layout_alignParentStart="true"
-        android:id="@+id/mypagedate2" />
+        <TextView
+            android:text="Registrert bruker siden"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mypageemail2"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="24dp"
+            android:id="@+id/mypagedate" />
+
+        <TextView
+            android:text="Registrert bruker siden"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mypagedate"
+            android:layout_alignParentStart="true"
+            android:id="@+id/mypagedate2" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>
