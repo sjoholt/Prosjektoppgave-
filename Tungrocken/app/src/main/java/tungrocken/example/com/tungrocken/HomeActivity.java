@@ -3,18 +3,18 @@ package tungrocken.example.com.tungrocken;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import java.util.List;
 
 import tungrocken.example.com.tungrocken.Loaders.LoadArticles;
-import tungrocken.example.com.tungrocken.adapters.ArticleAdapter;
+import tungrocken.example.com.tungrocken.adapters.HomeAdapter;
 import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.Server;
@@ -43,9 +43,19 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        // Create a grid layout with two columns
+        GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
 
+        // Create a custom SpanSizeLookup where the first item spans both columns
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return position == 0 ? 2 : 1;
+            }
+        });
 
-        final ListView lv = (ListView) findViewById(R.id.listw);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listw);
+        recyclerView.setLayoutManager(layoutManager);
 
 
         new LoadArticles(new LoadArticles.Callback() {
@@ -53,27 +63,24 @@ public class HomeActivity extends AppCompatActivity {
             public void update(final List<Article> articles) {
                 // Update ui
 
-                //ArrayAdapter<Article> arrayAdapter = new ArrayAdapter<Article>(HomeActivity.this, android.R.layout.simple_list_item_1, articles);
-                ArticleAdapter arrayAdapter = new ArticleAdapter(getApplicationContext(), articles);
-                lv.setAdapter(arrayAdapter);
+                HomeAdapter test = new HomeAdapter(getApplicationContext(), articles);
+                recyclerView.setAdapter(test);
 
-                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                test.setOnClickListener((HomeAdapter.OnClickListener) position -> {
 
-                        Log.i("this", articles.get(position).getArticleId().toString());
-                        Intent i = new Intent(HomeActivity.this, ArticleActivity.class);
+                    Log.i("this", articles.get(position).getArticleId().toString());
+                    Intent i = new Intent(HomeActivity.this, ArticleActivity.class);
 
-                        // bundle sender over info fra en activity til en annen
-                        Bundle bundle = new Bundle();
-                        bundle.putLong("aID",articles.get(position).getArticleId());
-                        i.putExtras(bundle);
+                    // bundle sender over info fra en activity til en annen
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("aID", articles.get(position).getArticleId());
+                    i.putExtras(bundle);
 
-                        startActivity(i);
-                    }
+                    startActivity(i);
                 });
+
             }
-        }).execute(ip+ "/services/app/articles");
+        }).execute(ip + "/services/app/articles");
 
     }
 
