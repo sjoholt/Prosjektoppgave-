@@ -1,5 +1,6 @@
 package tungrocken.example.com.tungrocken;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,12 +20,14 @@ import tungrocken.example.com.tungrocken.Loaders.LoadArticles;
 import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.Server;
+import com.squareup.picasso.Picasso;
 
 
 public class ArticleActivity extends AppCompatActivity {
 
     public static final String KEY = "AIzaSyC3BB6nhsBUlPGCJNRLSqCPg8vgr65Lqqk";
-
+    ImageView thumbnails;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +75,7 @@ public class ArticleActivity extends AppCompatActivity {
 
                 youtubeUrl.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-
                         playVideo(article.getYoutubeUrl());
-
                     }
                 });
 
@@ -122,6 +123,14 @@ public class ArticleActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
+    // Get Youtube videos Thumbnails :)
+    public void getThumbnails (){
+       //somethingsomething
+    }
+
+
 
 
 }
