@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,8 +20,11 @@ import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.Server;
 
+import static android.provider.Contacts.SettingsColumns.KEY;
+
 public class ArticleActivity extends AppCompatActivity {
 
+    public static final String KEY = "AIzaSyC3BB6nhsBUlPGCJNRLSqCPg8vgr65Lqqk";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +66,24 @@ public class ArticleActivity extends AppCompatActivity {
                 ingress.setText(article.getIngress());
                 TextView content = (TextView)findViewById(R.id.content);
                 content.setText(article.getContent());
+
+
                 TextView youtubeUrl = (TextView)findViewById(R.id.youtubeUrl);
                 youtubeUrl.setText(article.getYoutubeUrl());
 
+                youtubeUrl.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+
+                        playVideo(article.getYoutubeUrl());
+
+                    }
+                });
+
+
             }
         }).execute(ip+"/services/app/getarticle?id="+id+"");
+
+
 
     }
 
@@ -99,6 +116,12 @@ public class ArticleActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void playVideo(String youtubeID) {
+        Intent intent = YouTubeStandalonePlayer.createVideoIntent(this, KEY, youtubeID );
+        startActivity(intent);
+
     }
 
 
