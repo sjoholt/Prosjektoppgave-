@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         Server s = new Server();
         final String ip = s.serverUrl();
 

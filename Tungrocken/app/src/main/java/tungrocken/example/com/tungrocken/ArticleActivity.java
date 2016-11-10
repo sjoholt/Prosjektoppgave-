@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
+import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -26,12 +27,13 @@ import com.squareup.picasso.Picasso;
 public class ArticleActivity extends AppCompatActivity {
 
     public static final String KEY = "AIzaSyC3BB6nhsBUlPGCJNRLSqCPg8vgr65Lqqk";
-    ImageView thumbnails;
+    ImageView imageView;
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
+
 
         Server s = new Server();
         final String ip = s.serverUrl();
@@ -126,8 +128,26 @@ public class ArticleActivity extends AppCompatActivity {
 
 
     // Get Youtube videos Thumbnails :)
-    public void getThumbnails (){
-       //somethingsomething
+    public void getThumbnails(){
+
+
+        Picasso.with(context)
+                .load("http://img.youtube.com/vi/-OKrloDzGpU/mqdefault.jpg")
+                .into(imageView);
+
+        /*img_url = "http://img.youtube.com/vi/" +  +"/0.jpg";
+        iv_youtube_thumnail=(ImageView)findViewById(R.id.img_thumnail);
+        iv_play=(ImageView)findViewById(R.id.iv_play_pause);
+
+
+
+        Picasso.with(Youtube_Video_thumnail.this)
+                .load(img_url)
+                .placeholder(R.drawable.ic_launcher)
+                .into(iv_youtube_thumnail);*/
+
+
+
     }
 
 
