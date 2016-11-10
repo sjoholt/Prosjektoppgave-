@@ -1,6 +1,4 @@
 package tungrocken.example.com.tungrocken;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,25 +8,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
-import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 import tungrocken.example.com.tungrocken.Loaders.LoadArticles;
 import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.Server;
-import com.squareup.picasso.Picasso;
+
 
 
 public class ArticleActivity extends AppCompatActivity {
 
     public static final String KEY = "AIzaSyC3BB6nhsBUlPGCJNRLSqCPg8vgr65Lqqk";
-    ImageView imageView;
-    Context context;
+    ImageView ivImageFromUrl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +76,8 @@ public class ArticleActivity extends AppCompatActivity {
                     }
                 });
 
+                getThumbnails();
+
 
             }
         }).execute(ip+"/services/app/getarticle?id="+id+"");
@@ -130,22 +127,8 @@ public class ArticleActivity extends AppCompatActivity {
     // Get Youtube videos Thumbnails :)
     public void getThumbnails(){
 
-
-        Picasso.with(context)
-                .load("http://img.youtube.com/vi/-OKrloDzGpU/mqdefault.jpg")
-                .into(imageView);
-
-        /*img_url = "http://img.youtube.com/vi/" +  +"/0.jpg";
-        iv_youtube_thumnail=(ImageView)findViewById(R.id.img_thumnail);
-        iv_play=(ImageView)findViewById(R.id.iv_play_pause);
-
-
-
-        Picasso.with(Youtube_Video_thumnail.this)
-                .load(img_url)
-                .placeholder(R.drawable.ic_launcher)
-                .into(iv_youtube_thumnail);*/
-
+        ivImageFromUrl = (ImageView) findViewById(R.id.iv_image_from_url);
+        Picasso.with(getApplicationContext()).load("http://img.youtube.com/vi/fBYVlFXsEME/0.jpg").into(ivImageFromUrl);
 
 
     }
