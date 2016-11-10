@@ -20,7 +20,6 @@ import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.Server;
 
-import static android.provider.Contacts.SettingsColumns.KEY;
 
 public class ArticleActivity extends AppCompatActivity {
 
