@@ -135,7 +135,14 @@ public class MainClass {
         if(users.size()>0)
         {
             loggedIn = users.get(0);
-            
+            if(loggedIn.getSessionId().equals("0"))
+            {
+                createSessionId(loggedIn);
+            }
+            else
+            {
+                loggedIn = null;
+            }
         }
         return loggedIn;
     }
