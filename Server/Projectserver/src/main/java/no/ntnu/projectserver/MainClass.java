@@ -98,7 +98,7 @@ public class MainClass {
     @GET
     @Path("articles")
     public List<Article> getArticles() {
-        return em.createQuery("SELECT a FROM Article a", Article.class).getResultList();
+        return em.createQuery("SELECT a FROM Article a order by a.articleId desc", Article.class).getResultList();
     }
     
     // Return articles based on search (title only)
