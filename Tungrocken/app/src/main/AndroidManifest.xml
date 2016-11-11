@@ -36,6 +36,10 @@
         <activity
             android:name=".MyPageActivity"
             android:label="@string/title_activity_my_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RegisterUserActivity"
+            android:label="@string/title_activity_log_in"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

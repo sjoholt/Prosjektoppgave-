@@ -82,7 +82,7 @@ public class LoadUsers extends AsyncTask<String, Long, List<User>> {
         callback.update(users);
     }
 
-    interface Callback {
+    public interface Callback {
         void update(List<User> users);
     }
 }

@@ -33,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(a);
             }
         });
+
+        // demoknapp for artikkelvisning
+        final Button btn3 = (Button) findViewById(R.id.reg_btn);
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v3) {
+                Intent a = new Intent(MainActivity.this, RegisterUserActivity.class);
+                startActivity(a);
+            }
+        });
     }
 
     @Override

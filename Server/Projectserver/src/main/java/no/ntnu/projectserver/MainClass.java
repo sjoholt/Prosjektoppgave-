@@ -18,6 +18,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -73,16 +74,17 @@ public class MainClass {
     // Create user in db, not as admin, but active
     @GET
     @Path("adduser")
-    public User addUser(@QueryParam("email") String email, @QueryParam("password") String password , @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName)  {
+    public List<User> addUser(@QueryParam("email") String email, @QueryParam("password") String password , @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName)  {
         User u = new User(email,password,firstName, lastName,false, true);
         em.persist(u);
-        return u;
+        return em.createQuery("SELECT u FROM User u WHERE u.email = :paramID").setParameter("paramID", email).getResultList();
+        //return a;
     }
     
     // Create article in db      
     @GET
     @Path("addarticle") 
-    public Article addArticle(@QueryParam("title") String title, @QueryParam("ingress") String ingress , @QueryParam("content") String content, @QueryParam("photoUrl") String photoUrl, @QueryParam("youtubeUrl") String youtubeUrl)  {
+    public Article addArticle(@NotNull@QueryParam("title") String title, @NotNull@QueryParam("ingress") String ingress , @NotNull@QueryParam("content") String content, @NotNull@QueryParam("photoUrl") String photoUrl, @QueryParam("youtubeUrl") String youtubeUrl)  {
         Article a = new Article(title,ingress, content,photoUrl, youtubeUrl);
         em.persist(a);
         return a;
