@@ -1,34 +1,31 @@
 package tungrocken.example.com.tungrocken;
-
-import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
-import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 import tungrocken.example.com.tungrocken.Loaders.LoadArticles;
 import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.Server;
-import com.squareup.picasso.Picasso;
+
 
 
 public class ArticleActivity extends AppCompatActivity {
 
     public static final String KEY = "AIzaSyC3BB6nhsBUlPGCJNRLSqCPg8vgr65Lqqk";
-    ImageView imageView;
-    Context context;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,14 +69,27 @@ public class ArticleActivity extends AppCompatActivity {
                 content.setText(article.getContent());
 
 
-                TextView youtubeUrl = (TextView)findViewById(R.id.youtubeUrl);
-                youtubeUrl.setText(article.getYoutubeUrl());
 
-                youtubeUrl.setOnClickListener(new View.OnClickListener() {
+                //Henter ut en thumbnail fra youtubeurl med Picasso API.
+                ImageView ivImageFromUrl = (ImageView) findViewById(R.id.iv_image_from_url);
+                Picasso
+                        .with(getApplicationContext()).
+                        load("http://img.youtube.com/vi/"+article.getYoutubeUrl()+"/0.jpg").
+                        into(ivImageFromUrl);
+
+
+
+
+                //Bruker thumbnailen som knapp til å starte youtube aktiviteten.
+                ivImageFromUrl.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         playVideo(article.getYoutubeUrl());
                     }
                 });
+                youtubeInformation();
+
+
+
 
 
             }
@@ -119,37 +129,19 @@ public class ArticleActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+        //Using Standalone YoutubeAPI to play a video from Youtube. Using SQL to get a youtubeURL, and our personal youtubeAPI key. This feature starts a new activity, with 6 inputs.
+        //
     public void playVideo(String youtubeID) {
-        Intent intent = YouTubeStandalonePlayer.createVideoIntent(this, KEY, youtubeID );
+        Intent intent = YouTubeStandalonePlayer.createVideoIntent(this, KEY, youtubeID, 0, true, true);
         startActivity(intent);
 
     }
 
-
-    // Get Youtube videos Thumbnails :)
-    public void getThumbnails(){
-
-
-        Picasso.with(context)
-                .load("http://img.youtube.com/vi/-OKrloDzGpU/mqdefault.jpg")
-                .into(imageView);
-
-        /*img_url = "http://img.youtube.com/vi/" +  +"/0.jpg";
-        iv_youtube_thumnail=(ImageView)findViewById(R.id.img_thumnail);
-        iv_play=(ImageView)findViewById(R.id.iv_play_pause);
-
-
-
-        Picasso.with(Youtube_Video_thumnail.this)
-                .load(img_url)
-                .placeholder(R.drawable.ic_launcher)
-                .into(iv_youtube_thumnail);*/
-
-
-
+    public void youtubeInformation(){
+        TextView about = (TextView)findViewById(R.id.aboutContent);
+        String contentString = "<b>Trykk på bildet, se hva som skjer! </b>" ;
+        about.setText(Html.fromHtml(contentString));
     }
-
 
 
 

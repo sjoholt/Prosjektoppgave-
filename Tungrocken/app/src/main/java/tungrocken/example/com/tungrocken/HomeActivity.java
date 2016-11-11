@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+
 import java.util.List;
 
 import tungrocken.example.com.tungrocken.Loaders.LoadArticles;
@@ -116,6 +117,8 @@ public class HomeActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }

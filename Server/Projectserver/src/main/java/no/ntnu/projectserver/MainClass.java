@@ -3,11 +3,13 @@ package no.ntnu.projectserver;
 
 
 import java.io.Serializable;
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -74,17 +76,28 @@ public class MainClass {
     // Create user in db, not as admin, but active
     @GET
     @Path("adduser")
-    public List<User> addUser(@QueryParam("email") String email, @QueryParam("password") String password , @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName)  {
-        User u = new User(email,password,firstName, lastName,false, true);
-        em.persist(u);
+    public User addUser(@QueryParam("email") String email, @QueryParam("password") String password , @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName)  {
+        User u = null;
+        try{
+            byte[] hash = MessageDigest.getInstance("SHA-256").digest(password.getBytes("UTF-8"));
+            u = new User(email,Base64.getEncoder().encodeToString(hash),firstName, lastName,false, true);
+            
+            em.persist(u);
+            em.persist(new Group(Group.USER,email));
+        }
+        catch(Exception e)
+        {
+            Logger.getLogger(MainClass.class.getName()).log(Level.SEVERE, "Failed to add user");
+        }
+        
         return em.createQuery("SELECT u FROM User u WHERE u.email = :paramID").setParameter("paramID", email).getResultList();
-        //return a;
     }
     
     // Create article in db      
     @GET
     @Path("addarticle") 
-    public Article addArticle(@NotNull@QueryParam("title") String title, @NotNull@QueryParam("ingress") String ingress , @NotNull@QueryParam("content") String content, @NotNull@QueryParam("photoUrl") String photoUrl, @QueryParam("youtubeUrl") String youtubeUrl)  {
+    public Article addArticle(@NotNull @QueryParam("title") String title,@NotNull @QueryParam("ingress") String ingress , @NotNull @QueryParam("content") String content, @NotNull @QueryParam("photoUrl") String photoUrl, @QueryParam("youtubeUrl") String youtubeUrl)  {
+
         Article a = new Article(title,ingress, content,photoUrl, youtubeUrl);
         em.persist(a);
         return a;
@@ -92,7 +105,7 @@ public class MainClass {
     
     // Return a article based on ID
     @GET
-    @Path("getarticle")
+    @Path("secure/getarticle")
     public List<Article>getArticle(@QueryParam("id") Long articleID) {
         return em.createQuery("SELECT u FROM Article u WHERE u.articleId = :paramID").setParameter("paramID", articleID).getResultList();
     }
