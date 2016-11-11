@@ -76,7 +76,7 @@ public class MainClass {
     // Create user in db, not as admin, but active
     @GET
     @Path("adduser")
-    public User addUser(@QueryParam("email") String email, @QueryParam("password") String password , @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName)  {
+    public List<User> addUser(@QueryParam("email") String email, @QueryParam("password") String password , @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName)  {
         User u = null;
         try{
             byte[] hash = MessageDigest.getInstance("SHA-256").digest(password.getBytes("UTF-8"));
