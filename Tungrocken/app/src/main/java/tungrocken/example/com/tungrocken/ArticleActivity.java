@@ -1,5 +1,6 @@
 package tungrocken.example.com.tungrocken;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,7 +23,7 @@ import tungrocken.example.com.tungrocken.domain.Server;
 public class ArticleActivity extends AppCompatActivity {
 
     public static final String KEY = "AIzaSyC3BB6nhsBUlPGCJNRLSqCPg8vgr65Lqqk";
-    ImageView ivImageFromUrl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,16 +68,27 @@ public class ArticleActivity extends AppCompatActivity {
                 content.setText(article.getContent());
 
 
-                TextView youtubeUrl = (TextView)findViewById(R.id.youtubeUrl);
-                youtubeUrl.setText(article.getYoutubeUrl());
 
-                youtubeUrl.setOnClickListener(new View.OnClickListener() {
+                //Henter ut en thumbnail fra youtubeurl med Picasso API.
+                ImageView ivImageFromUrl = (ImageView) findViewById(R.id.iv_image_from_url);
+                Picasso
+                        .with(getApplicationContext()).
+                        load("http://img.youtube.com/vi/"+article.getYoutubeUrl()+"/0.jpg").
+                        into(ivImageFromUrl);
+
+
+
+
+                //Bruker thumbnailen som knapp til å starte youtube aktiviteten.
+                ivImageFromUrl.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         playVideo(article.getYoutubeUrl());
                     }
                 });
 
-                getThumbnails();
+
+
+
 
 
             }
@@ -116,23 +128,13 @@ public class ArticleActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+        //Using Standalone YoutubeAPI to play a video from Youtube. Using SQL to get a youtubeURL, and our personal youtubeAPI key. This feature starts a new activity, with 6 inputs.
+        //
     public void playVideo(String youtubeID) {
-        Intent intent = YouTubeStandalonePlayer.createVideoIntent(this, KEY, youtubeID );
+        Intent intent = YouTubeStandalonePlayer.createVideoIntent(this, KEY, youtubeID, 0, true, true);
         startActivity(intent);
 
     }
-
-
-    // Get Youtube videos Thumbnails :)
-    public void getThumbnails(){
-
-        ivImageFromUrl = (ImageView) findViewById(R.id.iv_image_from_url);
-        Picasso.with(getApplicationContext()).load("http://img.youtube.com/vi/fBYVlFXsEME/0.jpg").into(ivImageFromUrl);
-
-
-    }
-
 
 
 

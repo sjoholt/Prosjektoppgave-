@@ -58,19 +58,16 @@
                 android:id="@+id/content"
                 android:paddingBottom="10dp" />
 
-            <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/content"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/youtubeUrl" />
+
 
             <ImageView
                 android:id="@+id/iv_image_from_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_below="@+id/content"
+                android:adjustViewBounds="true"
+
                 />
 
         </LinearLayout>
