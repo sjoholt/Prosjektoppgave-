@@ -28,8 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 public class User implements Serializable {
     @Id @GeneratedValue
     Long id;
-    String sessionId;
+    @Id
     String email;
+    String sessionId;
     String password;
     String firstName;
     String lastName;
