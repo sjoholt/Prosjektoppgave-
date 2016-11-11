@@ -4,6 +4,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -85,7 +86,7 @@ public class ArticleActivity extends AppCompatActivity {
                         playVideo(article.getYoutubeUrl());
                     }
                 });
-
+                youtubeInformation();
 
 
 
@@ -134,6 +135,12 @@ public class ArticleActivity extends AppCompatActivity {
         Intent intent = YouTubeStandalonePlayer.createVideoIntent(this, KEY, youtubeID, 0, true, true);
         startActivity(intent);
 
+    }
+
+    public void youtubeInformation(){
+        TextView about = (TextView)findViewById(R.id.aboutContent);
+        String contentString = "<b>Trykk på bildet, se hva som skjer! </b>" ;
+        about.setText(Html.fromHtml(contentString));
     }
 
 
