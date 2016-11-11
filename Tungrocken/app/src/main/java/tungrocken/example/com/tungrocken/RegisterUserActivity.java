@@ -40,7 +40,7 @@ public class RegisterUserActivity extends AppCompatActivity {
             }
         });
 
-        // demoknapp for artikkelvisning
+        // knapp for å registrere en bruker
         final Button btn3 = (Button) findViewById(R.id.reg_u_btn);
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,15 +66,7 @@ public class RegisterUserActivity extends AppCompatActivity {
 
                 }else {
 
-
-
-
                     String Data = "?email="+email+"&password="+password+"&firstName="+firstName+"&lastName="+lastName+"";
-
-
-
-
-                    //HttpGet myGet = new HttpGet("http://foo.com/someservlet?param1=foo&param2=bar");
 
                     new LoadUsers(new LoadUsers.Callback() {
                         @Override
@@ -84,13 +76,11 @@ public class RegisterUserActivity extends AppCompatActivity {
                             if(users.isEmpty() ==false) {
                                 Intent a = new Intent(RegisterUserActivity.this, RegisterUserActivity.class);
                                 startActivity(a);
+                                // tenker å sende brukeren til home activity, eller mypage vi får se.
                             }
 
                         }
                     }).execute(ip+"/services/app/adduser"+Data+"");
-
-
-
 
                 }
             }
