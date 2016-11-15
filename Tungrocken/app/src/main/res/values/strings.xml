@@ -7,4 +7,6 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_my_page">Min side</string>
     <string name="title_activity_log_in">LogInActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="search">Søk</string>
 </resources>
