@@ -8,10 +8,13 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.squareup.picasso.Picasso;
+
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import tungrocken.example.com.tungrocken.Loaders.LoadArticles;
@@ -141,10 +144,30 @@ public class ArticleActivity extends AppCompatActivity {
         TextView about = (TextView)findViewById(R.id.aboutContent);
         String contentString = "<b>Trykk på bildet, se hva som skjer! </b>" ;
         about.setText(Html.fromHtml(contentString));
+
+
+
+       /* String name = "Trykk på bildet";
+        try {
+            name = new String(c.getString("NAME").getBytes("ISO-8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+
+            e.printStackTrace();
+        }
+
+        String decodedString = Html.fromHtml(name).toString();
+
+        */
     }
 
+/*public void youtubeInformation() {
+    WebView webview = new WebView(this);
 
+    String summary = "<html><body>Sorry, <span style=\"background: red;\">Madonna</span> gave no results</body></html>";
 
+    webview.loadData(summary, "text/html", "utf-8");
+
+}*/
 }
 
 
