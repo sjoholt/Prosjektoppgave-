@@ -3,6 +3,7 @@ package tungrocken.example.com.tungrocken.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
         public TextView content;
         public TextView youtubeUrl;
         public ImageView photoUrl;
+        public TextView search_error;
 
         public MyGridViewHolder(View view) {
             super(view);
@@ -66,6 +68,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
             this.content = (TextView) view.findViewById(R.id.content);
             this.youtubeUrl = (TextView) view.findViewById(R.id.youtubeUrl);
             this.photoUrl = (ImageView) view.findViewById(R.id.photoUrl);
+            this.search_error = (TextView) view.findViewById(R.id.search_error);
         }
     }
 
@@ -79,6 +82,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
     @Override
     public void onBindViewHolder(MyGridViewHolder holder, int position) {
         Article article = articles.get(position);
+
 
         holder.title.setText(article.getTitle());
         holder.ingress.setText(article.getIngress());
@@ -97,12 +101,18 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
 
     @Override
     public int getItemViewType(int position) {
-        Article article = articles.get(position);
-        int result = 0;
-        if (position == 0){
-            result = 1;
+
+        if(this.articles.isEmpty())
+        {
+            Log.i("Search error", "Search error");
+            return R.layout.search_error;
+
         }
-        return R.layout.homearticles;
+        else
+        {
+            Log.i("Søk", "søk");
+            return R.layout.homearticles;
+        }
     }
 
     public List<Article> getItems() {
