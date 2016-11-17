@@ -33,12 +33,10 @@ public class ArticleActivity extends AppCompatActivity {
 
     public static final String KEY = "AIzaSyC3BB6nhsBUlPGCJNRLSqCPg8vgr65Lqqk";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
-
 
         Server s = new Server();
         final String ip = s.serverUrl();
@@ -61,22 +59,17 @@ public class ArticleActivity extends AppCompatActivity {
         new LoadArticles(new LoadArticles.Callback() {
             @Override
             public void update(final List<Article> articles) {
-                // Update ui
-
-                //Pass på at IP er rett
                 Article article = articles.get(0);
 
                 ImageView photoUrl = (ImageView) findViewById(R.id.photoUrl);
                 Picasso.with(getApplicationContext()).load(ip + article.getPhotoUrl()).into(photoUrl);
 
                 TextView title = (TextView)findViewById(R.id.title2);
-                title.setText(article.getTitle());
+                title.setText(Html.fromHtml(article.getTitle()));
                 TextView ingress = (TextView)findViewById(R.id.ingress);
-                ingress.setText(article.getIngress());
+                ingress.setText(Html.fromHtml(article.getIngress()));
                 TextView content = (TextView)findViewById(R.id.content);
-                content.setText(article.getContent());
-
-
+                content.setText(Html.fromHtml(article.getContent()));
 
                 //Henter ut en thumbnail fra youtubeurl med Picasso API.
                 ImageView ivImageFromUrl = (ImageView) findViewById(R.id.iv_image_from_url);
@@ -85,9 +78,6 @@ public class ArticleActivity extends AppCompatActivity {
                         load("http://img.youtube.com/vi/"+article.getYoutubeUrl()+"/0.jpg").
                         into(ivImageFromUrl);
 
-
-
-
                 //Bruker thumbnailen som knapp til å starte youtube aktiviteten.
                 ivImageFromUrl.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -95,16 +85,8 @@ public class ArticleActivity extends AppCompatActivity {
                     }
                 });
                 youtubeInformation();
-
-
-
-
-
             }
         }).execute(ip+"/services/app/getarticle?id="+id+"");
-
-
-
     }
 
 
@@ -134,12 +116,10 @@ public class ArticleActivity extends AppCompatActivity {
             startActivity(i);
             return true;
         }
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
         //Using Standalone YoutubeAPI to play a video from Youtube. Using SQL to get a youtubeURL, and our personal youtubeAPI key. This feature starts a new activity, with 6 inputs.
@@ -147,37 +127,12 @@ public class ArticleActivity extends AppCompatActivity {
     public void playVideo(String youtubeID) {
         Intent intent = YouTubeStandalonePlayer.createVideoIntent(this, KEY, youtubeID, 0, true, true);
         startActivity(intent);
-
     }
 
     public void youtubeInformation(){
         TextView about = (TextView)findViewById(R.id.aboutContent);
-        String contentString = "<b>Trykk på bildet, se hva som skjer! </b>" ;
-        about.setText(Html.fromHtml(contentString));
-
-
-
-       /* String name = "Trykk på bildet";
-        try {
-            name = new String(c.getString("NAME").getBytes("ISO-8859-1"), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-
-            e.printStackTrace();
-        }
-
-        String decodedString = Html.fromHtml(name).toString();
-
-        */
+        about.setText(Html.fromHtml("<strong>Trykk på bildet, se hva som skjer! </strong>"));
     }
-
-/*public void youtubeInformation() {
-    WebView webview = new WebView(this);
-
-    String summary = "<html><body>Sorry, <span style=\"background: red;\">Madonna</span> gave no results</body></html>";
-
-    webview.loadData(summary, "text/html", "utf-8");
-
-}*/
 }
 
 

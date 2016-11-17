@@ -3,6 +3,7 @@ package tungrocken.example.com.tungrocken.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +32,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyGridViewHold
         void onClick(int position);
     }
 
-
     List<Article> articles;
     OnClickListener listener = position -> {};
-
     Context context;
-
 
 
     public HomeAdapter(@NonNull Context context, @NonNull List<Article> articles) {
@@ -76,8 +74,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyGridViewHold
     public void onBindViewHolder(MyGridViewHolder holder, int position) {
         Article article = articles.get(position);
 
-        holder.title.setText(article.getTitle());
-        holder.ingress.setText(article.getIngress());
+        holder.title.setText(Html.fromHtml(article.getTitle()));
+        holder.ingress.setText(Html.fromHtml(article.getIngress()));
         //holder.content.setText(article.getContent());
         holder.content.setVisibility(View.GONE);
         //holder.youtubeUrl.setText(article.getYoutubeUrl());
@@ -104,10 +102,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyGridViewHold
     public List<Article> getItems() {
         return articles;
     }
+
     public void setOnClickListener(@NonNull OnClickListener listener) {
         this.listener = listener;
     }
-
-
-
 }
