@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/search_error">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_error"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="15dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="tungrocken.example.com.tungrocken.HomeActivity"
+    >
 
     <TextView
         android:text="Vi beklager, men vi kunne ikke finne noe på ditt søk. Vennligst prøv en gang til..."
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/search_error"
+        android:id="@+id/search_error_msg"
         android:gravity="center_vertical|center_horizontal"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-</LinearLayout>
+
+</RelativeLayout>
