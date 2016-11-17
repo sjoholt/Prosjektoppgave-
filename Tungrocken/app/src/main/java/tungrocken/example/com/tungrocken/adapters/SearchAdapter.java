@@ -49,7 +49,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
         public TextView content;
         public TextView youtubeUrl;
         public ImageView photoUrl;
-        public TextView search_error_msg;
 
         public MyGridViewHolder(View view) {
             super(view);
@@ -61,7 +60,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
             this.content = (TextView) view.findViewById(R.id.content);
             this.youtubeUrl = (TextView) view.findViewById(R.id.youtubeUrl);
             this.photoUrl = (ImageView) view.findViewById(R.id.photoUrl);
-            this.search_error_msg = (TextView) view.findViewById(R.id.search_error_msg);
         }
     }
 
@@ -94,17 +92,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
 
     @Override
     public int getItemViewType(int position) {
-
-        if(this.articles.isEmpty())
-        {
-            Log.i("Search error", "Search error");
-            return R.layout.search_error;
-        }
-        else
-        {
-            Log.i("Søk", "søk");
-            return R.layout.homearticles;
-        }
+        return R.layout.homearticles;
     }
 
     public List<Article> getItems() {

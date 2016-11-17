@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import java.util.List;
 import tungrocken.example.com.tungrocken.Loaders.LoadArticles;
 import tungrocken.example.com.tungrocken.adapters.SearchAdapter;
@@ -63,21 +65,27 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void update(final List<Article> articles) {
 
-                SearchAdapter test = new SearchAdapter(getApplicationContext(), articles);
-                recyclerView.setAdapter(test);
+                if(articles.size()==0){
+                    Toast.makeText(SearchActivity.this, "Vi beklager, men vi kunne ikke finne noe på ditt søk. Vennligst prøv en gang til...",
+                            Toast.LENGTH_LONG).show();
+                }else {
+                    SearchAdapter test = new SearchAdapter(getApplicationContext(), articles);
+                    recyclerView.setAdapter(test);
 
-                test.setOnClickListener((SearchAdapter.OnClickListener) position -> {
+                    test.setOnClickListener((SearchAdapter.OnClickListener) position -> {
 
-                    Log.i("this", articles.get(position).getArticleId().toString());
-                    Intent i = new Intent(SearchActivity.this, ArticleActivity.class);
+                        Log.i("this", articles.get(position).getArticleId().toString());
+                        Intent i = new Intent(SearchActivity.this, ArticleActivity.class);
 
-                    // bundle sender over info fra en activity til en annen
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("aID", articles.get(position).getArticleId());
-                    i.putExtras(bundle);
+                        // bundle sender over info fra en activity til en annen
+                        Bundle bundle = new Bundle();
+                        bundle.putLong("aID", articles.get(position).getArticleId());
+                        i.putExtras(bundle);
 
-                    startActivity(i);
-                });
+                        startActivity(i);
+                    });
+                }
+
             }
         }).execute(ip + "/services/app/findarticle?search="+query+"");
     }
