@@ -312,17 +312,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            String url = "";
+            String url = "158.38.195.26:8080/Projectserver/";
             try {
                 int flags = Base64.NO_WRAP | Base64.URL_SAFE;
                 HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
                 String encoded = (Base64.encode((mEmail+":"+mPassword).getBytes(),flags)).toString();
 
                 connection.setRequestProperty("Authorization", "Basic "+encoded);
-
+                System.out.println(encoded);
             }
             catch (MalformedURLException e){return false;}
             catch (Exception e){return false;}
+
+
             /*
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
@@ -332,7 +334,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             }
             */
-            
+
 
             // TODO: register the new account here.
             return true;
