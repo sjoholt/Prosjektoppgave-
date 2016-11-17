@@ -6,11 +6,24 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Legge til artikkel i database</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <form action="services/app/addarticle?" method="GET">
+            Overskrift:<br>
+            <input type="text" name="title"><br>
+            Ingress:<br>
+            <input type="text" name="ingress"><br>
+            Artikkeltekst:<br>
+            <input type="text" name="content"><br>
+            Bilde-URL:<br>
+            <input type="text" name="photoUrl"><br>
+            Youtube-kode:<br>
+            <input type="text" name="youtubeUrl"><br>
+            <br><br>
+            <input type="submit" value="Legg til">
+        </form>
     </body>
 </html>
