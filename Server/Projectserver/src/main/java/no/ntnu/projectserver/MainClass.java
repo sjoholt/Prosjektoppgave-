@@ -109,6 +109,14 @@ public class MainClass {
     public List<Article>getArticle(@QueryParam("id") Long articleID) {
         return em.createQuery("SELECT u FROM Article u WHERE u.articleId = :paramID").setParameter("paramID", articleID).getResultList();
     }
+    
+    // Return a article based on ID  -- fjernes når authentication fungerer
+    @GET
+    @Path("getarticle")
+    public List<Article>getArticle2(@QueryParam("id") Long articleID) {
+        return em.createQuery("SELECT u FROM Article u WHERE u.articleId = :paramID").setParameter("paramID", articleID).getResultList();
+    }
+    
     // Return all articles
     @GET
     @Path("articles")

@@ -49,7 +49,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
         public TextView content;
         public TextView youtubeUrl;
         public ImageView photoUrl;
-        public TextView search_error;
+        public TextView search_error_msg;
 
         public MyGridViewHolder(View view) {
             super(view);
@@ -61,7 +61,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
             this.content = (TextView) view.findViewById(R.id.content);
             this.youtubeUrl = (TextView) view.findViewById(R.id.youtubeUrl);
             this.photoUrl = (ImageView) view.findViewById(R.id.photoUrl);
-            this.search_error = (TextView) view.findViewById(R.id.search_error);
+            this.search_error_msg = (TextView) view.findViewById(R.id.search_error_msg);
         }
     }
 

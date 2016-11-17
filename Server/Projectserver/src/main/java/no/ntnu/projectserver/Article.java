@@ -37,9 +37,9 @@ public class Article implements Serializable {
     String photoUrl;
     String youtubeUrl;
     
-    @XmlJavaTypeAdapter(User.UserAdapter.class)
-    @ManyToOne(optional = false,cascade = CascadeType.PERSIST)
-    User owner;
+    //@XmlJavaTypeAdapter(User.UserAdapter.class)
+    //@ManyToOne(optional = false,cascade = CascadeType.PERSIST)
+    //User owner;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     Date datePosted = new Date();
@@ -88,14 +88,14 @@ public class Article implements Serializable {
     public String getPhotoUrl() {
         return photoUrl;
     }
+    
+    public Date getDatePosted() {
+        return this.datePosted;
+    }
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
-    }
-
-    public Date getDatePosted() {
-        return datePosted;
-    }  
+    } 
 
     public String getYoutubeUrl() {
         return youtubeUrl;
