@@ -5,8 +5,6 @@ import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,11 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import java.util.List;
-
 import tungrocken.example.com.tungrocken.Loaders.LoadArticles;
-import tungrocken.example.com.tungrocken.adapters.HomeAdapter;
 import tungrocken.example.com.tungrocken.adapters.SearchAdapter;
 import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
@@ -33,8 +28,6 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
-
 
         // Oppsett av toolbar - Må brukes av alle aktiviteter utenom hovedsiden
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -48,24 +41,17 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-
         Intent intent = getIntent();
         if(Intent.ACTION_SEARCH.equals(intent.getAction())){
             String query = intent.getStringExtra(SearchManager.QUERY);
             showResult(query);
         }
-
-
-
-
     }
 
     public void showResult(String query){
 
         Server s = new Server();
         final String ip = s.serverUrl();
-        //final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listw);
-
 
         // Create a grid layout with two columns
         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 1);
@@ -73,13 +59,9 @@ public class SearchActivity extends AppCompatActivity {
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listw);
         recyclerView.setLayoutManager(layoutManager);
 
-
-
-
         new LoadArticles(new LoadArticles.Callback() {
             @Override
             public void update(final List<Article> articles) {
-                // Update ui
 
                 SearchAdapter test = new SearchAdapter(getApplicationContext(), articles);
                 recyclerView.setAdapter(test);
@@ -96,7 +78,6 @@ public class SearchActivity extends AppCompatActivity {
 
                     startActivity(i);
                 });
-
             }
         }).execute(ip + "/services/app/findarticle?search="+query+"");
     }
@@ -135,6 +116,4 @@ public class SearchActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }

@@ -9,12 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
-
 import tungrocken.example.com.tungrocken.R;
 import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.Server;
@@ -36,13 +32,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
         void onClick(int position);
     }
 
-
     List<Article> articles;
     OnClickListener listener = position -> {};
 
     Context context;
-
-
 
     public SearchAdapter(@NonNull Context context, @NonNull List<Article> articles) {
         this.context = context;
@@ -106,7 +99,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
         {
             Log.i("Search error", "Search error");
             return R.layout.search_error;
-
         }
         else
         {
@@ -121,7 +113,4 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
     public void setOnClickListener(@NonNull OnClickListener listener) {
         this.listener = listener;
     }
-
-
-
 }
