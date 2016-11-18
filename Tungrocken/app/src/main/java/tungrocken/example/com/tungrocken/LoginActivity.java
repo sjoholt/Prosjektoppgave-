@@ -332,7 +332,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             });
             try {
-                int flags = Base64.NO_WRAP | Base64.URL_SAFE;
+
                 HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
                 //String encoded = (Base64.encode((mEmail+":"+mPassword).getBytes(),flags)).toString();
                 //connection.setRequestProperty("Authorization", "Basic"+encoded);

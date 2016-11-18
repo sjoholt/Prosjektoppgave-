@@ -48,6 +48,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(a);
             }
         });
+
+        // demoknapp for login
+        final Button btn4 = (Button) findViewById(R.id.login_btn);
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v3) {
+                Intent a = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(a);
+            }
+        });
     }
 
     @Override

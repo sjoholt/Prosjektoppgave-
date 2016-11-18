@@ -86,7 +86,7 @@ public class ArticleActivity extends AppCompatActivity {
                 });
                 youtubeInformation();
             }
-        }).execute(ip+"/services/app/getarticle?id="+id+"");
+        }).execute(ip+"/services/app/secure/getarticle?id="+id+"");
     }
 
 

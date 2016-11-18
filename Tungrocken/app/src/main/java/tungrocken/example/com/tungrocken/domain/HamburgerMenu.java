@@ -2,7 +2,16 @@ package tungrocken.example.com.tungrocken.domain;
 
 import android.content.Context;
 import android.content.Intent;
+
+import java.io.IOException;
+import java.net.Authenticator;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.PasswordAuthentication;
+import java.net.URL;
 import java.util.Date;
+
+import tungrocken.example.com.tungrocken.LoginActivity;
 import tungrocken.example.com.tungrocken.MainActivity;
 import tungrocken.example.com.tungrocken.MyPageActivity;
 import tungrocken.example.com.tungrocken.OmTungrocken;
@@ -13,6 +22,10 @@ import tungrocken.example.com.tungrocken.R;
  */
 
 public class HamburgerMenu {
+
+    Server s = new Server();
+    final String ip = s.serverUrl();
+
 
     public HamburgerMenu() {
     }
@@ -37,6 +50,13 @@ public class HamburgerMenu {
                 i2.putExtra("bruker", getTestUser());               // <---- getTestUser må endres til den reelle metoden for å hente ut pålogget bruker
                 result = i2;
                 break;
+
+            case R.id.action_menu3:
+                logoutMethod();
+                Intent i3 = new Intent(c, LoginActivity.class);
+                result = i3;
+                break;
+
         }
 
         return result;
@@ -52,4 +72,23 @@ public class HamburgerMenu {
         Date d = new Date();
         return d;
     }
+
+
+    public void logoutMethod(){
+        Authenticator.setDefault(new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("", "".toCharArray());
+            }
+        });
+        String url = ip+"/services/app/secure/getarticle?id=455";
+        try{
+            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();}
+        catch (MalformedURLException e)
+        {}
+        catch (IOException e)
+        {}
+
+    }
+
 }
