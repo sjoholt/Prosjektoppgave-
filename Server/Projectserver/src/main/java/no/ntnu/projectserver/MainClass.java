@@ -3,7 +3,9 @@ package no.ntnu.projectserver;
 
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -146,6 +148,26 @@ public class MainClass {
         em.merge(u);
         return u;
     }
+    
+    @GET
+    @Path("edituser")
+    public List<User> editUser(@QueryParam("email") String email,@QueryParam("firstname") String fname,@QueryParam("lastname") String lname, @QueryParam("password") String password) throws UnsupportedEncodingException{
+        User u = em.find(User.class, email);
+        
+        try {
+            byte[] hash = MessageDigest.getInstance("SHA-256").digest(password.getBytes("UTF-8"));
+            u.setFirstName(fname);
+            u.setLastName(lname);
+            u.setPassword(Base64.getEncoder().encodeToString(hash));
+            em.merge(u);
+     
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(MainClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+               
+        return em.createQuery("SELECT u FROM User u WHERE u.email = :paramID").setParameter("paramID", email).getResultList();
+    }
+
     
     
     /*
