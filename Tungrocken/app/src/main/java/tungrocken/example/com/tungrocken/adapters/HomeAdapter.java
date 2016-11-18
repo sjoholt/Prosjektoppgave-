@@ -9,39 +9,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
-import java.text.SimpleDateFormat;
 import java.util.List;
-
 import tungrocken.example.com.tungrocken.R;
 import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.Server;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyGridViewHolder> {
 
-
-    static SimpleDateFormat SDF = new SimpleDateFormat("EEE HH:mm");
-
     Server s = new Server();
     final String ip = s.serverUrl();
-
-
-    public interface OnClickListener {
-        void onClick(int position);
-    }
 
     List<Article> articles;
     OnClickListener listener = position -> {};
     Context context;
 
+    public interface OnClickListener {
+        void onClick(int position);
+    }
 
     public HomeAdapter(@NonNull Context context, @NonNull List<Article> articles) {
         this.context = context;
         this.articles = articles;
     }
-
 
     public class MyGridViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
@@ -76,12 +66,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyGridViewHold
 
         holder.title.setText(Html.fromHtml(article.getTitle()));
         holder.ingress.setText(Html.fromHtml(article.getIngress()));
-        //holder.content.setText(article.getContent());
         holder.content.setVisibility(View.GONE);
-        //holder.youtubeUrl.setText(article.getYoutubeUrl());
         holder.youtubeUrl.setVisibility(View.GONE);
         Picasso.with(context).load(ip + article.getPhotoUrl()).into(holder.photoUrl);
-
     }
 
     @Override
@@ -91,16 +78,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyGridViewHold
 
     @Override
     public int getItemViewType(int position) {
-        Article article = articles.get(position);
-        int result = 0;
-        if (position == 0){
-            result = 1;
-        }
-        return R.layout.homearticles;
-    }
 
-    public List<Article> getItems() {
-        return articles;
+        return R.layout.homearticles;
     }
 
     public void setOnClickListener(@NonNull OnClickListener listener) {
