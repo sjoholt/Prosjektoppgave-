@@ -14,6 +14,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.text.Html;
 import android.util.Base64;
 
 import android.os.Build;
@@ -30,11 +31,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.Logger;
+
+import tungrocken.example.com.tungrocken.domain.Server;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -42,6 +47,9 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+    Server s = new Server();
+    final String ip = s.serverUrl();
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -97,6 +105,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+
     }
 
     private void populateAutoComplete() {
@@ -312,17 +322,36 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            String url = "158.38.195.26:8080/Projectserver/";
+            String url = ip+"/services/app/secure/getarticle?id=455";
+
             try {
                 int flags = Base64.NO_WRAP | Base64.URL_SAFE;
                 HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
                 String encoded = (Base64.encode((mEmail+":"+mPassword).getBytes(),flags)).toString();
+                connection.setRequestProperty("Authorization", "Basic"+encoded);
+                connection.setRequestMethod("GET");
+                connection.setUseCaches(false);
+                connection.setDoInput(true);
+                connection.setDoOutput(true);
+                connection.connect();
+                OutputStream os = connection.getOutputStream();
+                int responseCode = connection.getResponseCode();
 
-                connection.setRequestProperty("Authorization", "Basic "+encoded);
-                System.out.println(encoded);
+                if(responseCode == 401) {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            catch (MalformedURLException e){return false;}
-            catch (Exception e){return false;}
+            catch (MalformedURLException e){
+
+                e.printStackTrace();
+                return false;}
+            catch (Exception e){
+                System.out.println((Thread.currentThread().getStackTrace()));
+                return false;}
 
 
             /*
@@ -337,7 +366,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
             // TODO: register the new account here.
-            return true;
+            //return true;
         }
 
         @Override
