@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,8 +67,10 @@ public class SearchActivity extends AppCompatActivity {
             public void update(final List<Article> articles) {
 
                 if(articles.size()==0){
-                    Toast.makeText(SearchActivity.this, "Vi beklager, men vi kunne ikke finne noe på ditt søk. Vennligst prøv en gang til...",
-                            Toast.LENGTH_LONG).show();
+                    Toast toast = Toast.makeText(SearchActivity.this, "Vi beklager, men vi kunne ikke finne noe på ditt søk. Vennligst prøv en gang til...", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, Gravity.CENTER_HORIZONTAL, Gravity.CENTER_VERTICAL);
+                    toast.show();
+
                 }else {
                     SearchAdapter test = new SearchAdapter(getApplicationContext(), articles);
                     recyclerView.setAdapter(test);

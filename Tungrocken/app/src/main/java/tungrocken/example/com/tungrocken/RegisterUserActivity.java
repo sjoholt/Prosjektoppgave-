@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,7 +60,6 @@ public class RegisterUserActivity extends AppCompatActivity {
                 EditText pword = (EditText)findViewById(R.id.password);
                 password = pword.getText().toString();
 
-
                 if((firstName.isEmpty()||lastName.isEmpty()||email.isEmpty()||password.isEmpty())==true){
 
                     Toast.makeText(RegisterUserActivity.this, "Alle feltene må fylles ut!",
@@ -79,20 +79,14 @@ public class RegisterUserActivity extends AppCompatActivity {
                                 startActivity(a);
                                 // tenker å sende brukeren til home activity, eller mypage vi får se.
                             } else {
-                                Toast.makeText(RegisterUserActivity.this, "Det er allerede registrert en bruker med denne epost-addressen!",
-                                        Toast.LENGTH_LONG).show();
+                                Toast toast = Toast.makeText(RegisterUserActivity.this, "Det er allerede registrert en bruker med denne epost-addressen!",Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER, Gravity.CENTER_HORIZONTAL, Gravity.CENTER_VERTICAL);
+                                toast.show();
                             }
-
                         }
                     }).execute(ip+"/services/app/adduser"+Data+"");
-
                 }
             }
         });
-
     }
-
-
-
-
 }
