@@ -6,18 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.List;
-
 import tungrocken.example.com.tungrocken.Loaders.LoadUsers;
-import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.Server;
 import tungrocken.example.com.tungrocken.domain.User;
 
@@ -72,11 +67,15 @@ public class RegisterUserActivity extends AppCompatActivity {
                     new LoadUsers(new LoadUsers.Callback() {
                         @Override
                         public void update(final List<User> users) {
-                            // Update ui
 
                             if(users.isEmpty() ==false) {
-                                Intent a = new Intent(RegisterUserActivity.this, RegisterUserActivity.class);
+                                Intent a = new Intent(RegisterUserActivity.this, MyPageActivity.class);
+
+                                User u = users.get(0);
+                                a.putExtra("bruker", u);
+
                                 startActivity(a);
+
                                 // tenker å sende brukeren til home activity, eller mypage vi får se.
                             } else {
                                 Toast toast = Toast.makeText(RegisterUserActivity.this, "Det er allerede registrert en bruker med denne epost-addressen!",Toast.LENGTH_LONG);
