@@ -3,12 +3,10 @@ package tungrocken.example.com.tungrocken.domain;
 import android.content.Context;
 import android.content.Intent;
 import java.util.Date;
-
 import tungrocken.example.com.tungrocken.MainActivity;
 import tungrocken.example.com.tungrocken.MyPageActivity;
 import tungrocken.example.com.tungrocken.OmTungrocken;
 import tungrocken.example.com.tungrocken.R;
-import tungrocken.example.com.tungrocken.domain.User;
 
 /**
  * Created by Team Tungrocken on 28.10.2016.
