@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.List;
 import tungrocken.example.com.tungrocken.domain.Article;
 
-
 /**
  * Created by Team Tungrocken
  */

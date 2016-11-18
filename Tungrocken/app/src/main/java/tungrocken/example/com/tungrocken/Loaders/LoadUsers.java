@@ -1,14 +1,12 @@
 package tungrocken.example.com.tungrocken.Loaders;
 
 import android.os.AsyncTask;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,8 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
-import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.User;
 
 /**
@@ -32,9 +28,10 @@ import tungrocken.example.com.tungrocken.domain.User;
 public class LoadUsers extends AsyncTask<String, Long, List<User>> {
     static SimpleDateFormat DF = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
     static SimpleDateFormat DFSHORT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-    tungrocken.example.com.tungrocken.Loaders.LoadUsers.Callback callback;
 
-    public LoadUsers(tungrocken.example.com.tungrocken.Loaders.LoadUsers.Callback callback) {
+    Callback callback;
+
+    public LoadUsers(Callback callback) {
         this.callback = callback;
     }
 
