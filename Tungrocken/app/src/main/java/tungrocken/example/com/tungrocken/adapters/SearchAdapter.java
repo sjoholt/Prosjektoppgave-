@@ -3,6 +3,7 @@ package tungrocken.example.com.tungrocken.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,8 +76,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyGridView
         Article article = articles.get(position);
 
 
-        holder.title.setText(article.getTitle());
-        holder.ingress.setText(article.getIngress());
+        holder.title.setText(Html.fromHtml(article.getTitle()));
+        holder.ingress.setText(Html.fromHtml(article.getIngress()));
         //holder.content.setText(article.getContent());
         holder.content.setVisibility(View.GONE);
         //holder.youtubeUrl.setText(article.getYoutubeUrl());

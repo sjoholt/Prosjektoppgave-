@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,10 +27,10 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 @Table(name = "APPUSER")
 
 public class User implements Serializable {
-    @Id @GeneratedValue
-    Long id;
+   // @Id @GeneratedValue
+   // Long id;
     @Id
-    String email;
+    @NotNull String email;
     String sessionId;
     String password;
     String firstName;
@@ -117,19 +118,5 @@ public class User implements Serializable {
         return created;
     }
 
-    public Long getId() {
-        return id;
-    }
-    
-    public static class UserAdapter extends XmlAdapter<Long, User> {
-        @Override
-        public User unmarshal(Long v) throws Exception {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
 
-        @Override
-        public Long marshal(User v) throws Exception {
-            return v != null ? v.getId() : null;
-        }       
-    }
 }

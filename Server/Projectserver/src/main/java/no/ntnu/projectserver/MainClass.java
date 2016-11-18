@@ -148,7 +148,7 @@ public class MainClass {
     }
     
     
-    
+    /*
     @GET
     @Path("checkCredentials")
     public User login(@QueryParam("email") String emailParam, @QueryParam("password") String passwordParam)
@@ -169,7 +169,9 @@ public class MainClass {
         }
         return loggedIn;
     }
+    */
     
+    /*
     @GET
     @Path("login")
     public PreppedUser sendUser(@QueryParam("email") String emailParam,@QueryParam("password") String passwordParam)
@@ -182,6 +184,7 @@ public class MainClass {
         }
         return result;
     }
+    */
     
     @GET
     @Path("session")
@@ -192,6 +195,7 @@ public class MainClass {
         return sessionId;
     }
     
+    /*
     public String createSessionId(User u)
     {
         String result = null;
@@ -206,6 +210,7 @@ public class MainClass {
         }
         return result;
     }
+    */
     
     @XmlRootElement
     @XmlAccessorType(XmlAccessType.FIELD)

@@ -18,17 +18,6 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="82dp"
-        android:id="@+id/firstName"
-        android:hint="Fornavn:" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
         android:layout_below="@+id/firstName"
         android:layout_alignEnd="@+id/firstName"
         android:id="@+id/lastName"
@@ -42,7 +31,7 @@
         android:layout_below="@+id/lastName"
         android:layout_alignEnd="@+id/lastName"
         android:id="@+id/email"
-        android:hint="Email:" />
+        android:hint="E-post (brukernavn):" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -54,12 +43,33 @@
         android:id="@+id/password"
         android:hint="Passord:" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:id="@+id/register_info"
+        android:gravity="center_horizontal"
+        android:text="Text" />
+
     <Button
         android:text="Registrer bruker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
+        android:id="@+id/reg_u_btn"
         android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp"
-        android:id="@+id/reg_u_btn" />
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="62dp"
+        android:id="@+id/firstName"
+        android:hint="Fornavn:"
+        android:layout_below="@+id/register_info"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -26,6 +28,9 @@ public class RegisterUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_user);
         Server s = new Server();
         final String ip = s.serverUrl();
+
+        TextView info = (TextView)findViewById(R.id.register_info);
+        info.setText(Html.fromHtml("<h2>Velkommen til brukerregistreringen. <br>Husk at <strong>alle</strong> feltene må være utfylt!</h2>"));
 
 
         // Oppsett av toolbar - Må brukes av alle aktiviteter utenom hovedsiden
@@ -54,6 +59,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                 EditText pword = (EditText)findViewById(R.id.password);
                 password = pword.getText().toString();
 
+
                 if((firstName.isEmpty()||lastName.isEmpty()||email.isEmpty()||password.isEmpty())==true){
 
                     Toast.makeText(RegisterUserActivity.this, "Alle feltene må fylles ut!",
@@ -72,6 +78,9 @@ public class RegisterUserActivity extends AppCompatActivity {
                                 Intent a = new Intent(RegisterUserActivity.this, RegisterUserActivity.class);
                                 startActivity(a);
                                 // tenker å sende brukeren til home activity, eller mypage vi får se.
+                            } else {
+                                Toast.makeText(RegisterUserActivity.this, "Det er allerede registrert en bruker med denne epost-addressen!",
+                                        Toast.LENGTH_LONG).show();
                             }
 
                         }
