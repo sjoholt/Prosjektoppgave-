@@ -32,7 +32,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.OutputStream;
+import java.net.Authenticator;
 import java.net.MalformedURLException;
+import java.net.PasswordAuthentication;
 import java.util.ArrayList;
 import java.util.List;
 import java.net.HttpURLConnection;
@@ -323,18 +325,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
             String url = ip+"/services/app/secure/getarticle?id=455";
-
+            Authenticator.setDefault(new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(mEmail, mPassword.toCharArray());
+                }
+            });
             try {
                 int flags = Base64.NO_WRAP | Base64.URL_SAFE;
                 HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-                String encoded = (Base64.encode((mEmail+":"+mPassword).getBytes(),flags)).toString();
-                connection.setRequestProperty("Authorization", "Basic"+encoded);
-                connection.setRequestMethod("GET");
-                connection.setUseCaches(false);
+                //String encoded = (Base64.encode((mEmail+":"+mPassword).getBytes(),flags)).toString();
+                //connection.setRequestProperty("Authorization", "Basic"+encoded);
+                //connection.setRequestMethod("GET");
+                /*connection.setUseCaches(false);
                 connection.setDoInput(true);
-                connection.setDoOutput(true);
+                connection.setDoOutput(true);*/
                 connection.connect();
-                OutputStream os = connection.getOutputStream();
+                //OutputStream os = connection.getOutputStream();
                 int responseCode = connection.getResponseCode();
 
                 if(responseCode == 401) {
