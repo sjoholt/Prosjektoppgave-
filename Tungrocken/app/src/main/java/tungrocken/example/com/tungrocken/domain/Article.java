@@ -10,15 +10,12 @@ import java.util.Date;
 public class Article implements Serializable {
 
     Long articleId;
-
     String title;
     String ingress;
     String content;
     String photoUrl;
     String youtubeUrl;
-
     User owner;
-
     Date datePosted;
 
     public Long getArticleId() {
