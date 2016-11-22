@@ -28,34 +28,17 @@ public class MainActivity extends AppCompatActivity {
             Intent d = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(d);
         }
+        else
+        {
+            Intent d = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(d);
+        }
 
         // Oppsett av toolbar (uten logoclicklistener)
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationIcon(R.drawable.toolbarlogo);
-
-        // demoknapp for artikkelvisning
-        final Button btn2 = (Button) findViewById(R.id.articlesBtn);
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v3) {
-                Intent a = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(a);
-            }
-        });
-
-
-
-        // demoknapp for login
-        final Button btn4 = (Button) findViewById(R.id.login_btn);
-        btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v3) {
-                Intent a = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(a);
-            }
-        });
     }
 
     @Override
