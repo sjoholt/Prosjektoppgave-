@@ -23,7 +23,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:text="TextView"
+                android:text=" "
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -40,7 +40,7 @@
                 android:paddingBottom="10dp" />
 
             <TextView
-                android:text="TextView"
+                android:text=" "
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/photoUrl"
@@ -50,7 +50,7 @@
                 android:paddingBottom="10dp" />
 
             <TextView
-                android:text="TextView"
+                android:text=" "
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ingress"
@@ -71,7 +71,7 @@
 
 
             <TextView
-                android:text="TextView"
+                android:text=" "
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/aboutContent"
