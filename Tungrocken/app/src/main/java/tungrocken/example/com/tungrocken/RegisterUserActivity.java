@@ -68,8 +68,8 @@ public class RegisterUserActivity extends AppCompatActivity {
                         @Override
                         public void update(final List<User> users) {
 
-                            if(users.isEmpty() ==false) {
-                                Intent a = new Intent(RegisterUserActivity.this, MyPageActivity.class);
+                            if(users.isEmpty() == false) {
+                                Intent a = new Intent(RegisterUserActivity.this, LoginActivity.class);
 
                                 User u = users.get(0);
                                 a.putExtra("bruker", u);
