@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         if(SharedRespources.getInstance().getUser() == null)
         {
             Intent d = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(d);
         }
 
         // Oppsett av toolbar (uten logoclicklistener)
