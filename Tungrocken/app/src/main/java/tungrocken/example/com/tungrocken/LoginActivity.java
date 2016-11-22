@@ -3,6 +3,7 @@ package tungrocken.example.com.tungrocken;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -124,6 +125,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        // demoknapp for Registrere bruker
+        final Button btn3 = (Button) findViewById(R.id.reg_btn);
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v3) {
+                Intent a = new Intent(LoginActivity.this, RegisterUserActivity.class);
+                startActivity(a);
+            }
+        });
 
 
     }

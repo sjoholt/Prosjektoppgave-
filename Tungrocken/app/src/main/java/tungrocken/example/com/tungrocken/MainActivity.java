@@ -44,15 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // demoknapp for artikkelvisning
-        final Button btn3 = (Button) findViewById(R.id.reg_btn);
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v3) {
-                Intent a = new Intent(MainActivity.this, RegisterUserActivity.class);
-                startActivity(a);
-            }
-        });
+
 
         // demoknapp for login
         final Button btn4 = (Button) findViewById(R.id.login_btn);
