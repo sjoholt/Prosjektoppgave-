@@ -334,14 +334,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             try {
 
                 HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-                //String encoded = (Base64.encode((mEmail+":"+mPassword).getBytes(),flags)).toString();
-                //connection.setRequestProperty("Authorization", "Basic"+encoded);
-                //connection.setRequestMethod("GET");
-                /*connection.setUseCaches(false);
-                connection.setDoInput(true);
-                connection.setDoOutput(true);*/
                 connection.connect();
-                //OutputStream os = connection.getOutputStream();
                 int responseCode = connection.getResponseCode();
 
                 if(responseCode == 401) {
