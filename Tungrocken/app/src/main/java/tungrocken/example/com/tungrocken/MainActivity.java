@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(SharedRespources.getInstance().getUser() == null)
+        {
+            Intent d = new Intent(MainActivity.this, LoginActivity.class);
+        }
+
         // Oppsett av toolbar (uten logoclicklistener)
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
