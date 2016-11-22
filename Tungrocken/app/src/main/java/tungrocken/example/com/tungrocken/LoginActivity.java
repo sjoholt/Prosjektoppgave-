@@ -344,9 +344,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
                 else
                 {
-                    List l = (List<User>)connection.getContent();
-                    User u = (User)l.get(0);
-                    SharedRespources.getInstance().setUser(u);
+                    //List l = (List<User>)connection.getContent();
+
+                    //User u = (User)l.get(0);
+                    //SharedRespources.getInstance().setUser(u);
                     return true;
                 }
             }
