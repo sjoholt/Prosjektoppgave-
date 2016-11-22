@@ -81,14 +81,6 @@ public class HamburgerMenu {
                 return new PasswordAuthentication("", "".toCharArray());
             }
         });
-        String url = ip+"/services/app/secure/getarticle?id=455";
-        try{
-            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();}
-        catch (MalformedURLException e)
-        {}
-        catch (IOException e)
-        {}
-
     }
 
 }
