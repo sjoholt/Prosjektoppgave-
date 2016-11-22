@@ -42,6 +42,7 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 import tungrocken.example.com.tungrocken.domain.Server;
+import tungrocken.example.com.tungrocken.domain.User;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -324,13 +325,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            String url = ip+"/services/app/secure/getarticle?id=455";
+            String url = ip+"/services/app/secure/getuser?email="+mEmail;
             Authenticator.setDefault(new Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(mEmail, mPassword.toCharArray());
                 }
             });
+
             try {
 
                 HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
@@ -342,6 +344,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
                 else
                 {
+                    List l = (List<User>)connection.getContent();
+                    User u = (User)l.get(0);
+                    SharedRespources.getInstance().setUser(u);
                     return true;
                 }
             }

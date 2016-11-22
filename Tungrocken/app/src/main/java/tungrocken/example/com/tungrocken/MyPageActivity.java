@@ -41,7 +41,8 @@ public class MyPageActivity extends AppCompatActivity {
 
         // Tar i mot hvilken bruker som er pålogget, sendt gjennom intenten
         Intent intent = getIntent();
-        User u = (User) intent.getSerializableExtra("bruker");
+        //User u = (User) intent.getSerializableExtra("bruker");
+        User u = SharedRespources.getInstance().getUser();
         insertUserInfo(u);
 
         // knapp for å registrere en bruker

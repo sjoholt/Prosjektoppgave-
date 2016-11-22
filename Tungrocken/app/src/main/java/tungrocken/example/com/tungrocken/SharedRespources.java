@@ -3,7 +3,7 @@ package tungrocken.example.com.tungrocken;
 import tungrocken.example.com.tungrocken.domain.User;
 
 /**
- * Created by Fredrik on 22.11.2016.
+ * Created by Team Tungrocken on 22.11.2016.
  */
 public class SharedRespources {
     private static SharedRespources ourInstance;

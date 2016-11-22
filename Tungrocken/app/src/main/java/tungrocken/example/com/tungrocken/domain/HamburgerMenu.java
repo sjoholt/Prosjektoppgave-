@@ -16,6 +16,7 @@ import tungrocken.example.com.tungrocken.MainActivity;
 import tungrocken.example.com.tungrocken.MyPageActivity;
 import tungrocken.example.com.tungrocken.OmTungrocken;
 import tungrocken.example.com.tungrocken.R;
+import tungrocken.example.com.tungrocken.SharedRespources;
 
 /**
  * Created by Team Tungrocken on 28.10.2016.
@@ -47,7 +48,7 @@ public class HamburgerMenu {
 
             case R.id.action_menu2:
                 Intent i2 = new Intent(c, MyPageActivity.class);
-                i2.putExtra("bruker", getTestUser());               // <---- getTestUser må endres til den reelle metoden for å hente ut pålogget bruker
+                i2.putExtra("bruker", SharedRespources.getInstance().getUser());
                 result = i2;
                 break;
 
@@ -61,18 +62,6 @@ public class HamburgerMenu {
 
         return result;
     }
-
-    // metoder for å lage en fiktiv bruker, kun for testing. Må fjernes når skikkelig metode for å hente ut bruker er laget
-    public User getTestUser() {
-        User u = new User(Long.valueOf(123456), "sindre@sjoholt.net", "password", "Sindre", "Sjøholt", true, true, getDateCreated());
-        return u;
-    }
-
-    public Date getDateCreated() {
-        Date d = new Date();
-        return d;
-    }
-
 
     public void logoutMethod(){
         Authenticator.setDefault(new Authenticator() {
