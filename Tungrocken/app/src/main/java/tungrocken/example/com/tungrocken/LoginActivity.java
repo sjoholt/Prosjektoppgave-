@@ -325,7 +325,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            String url = ip+"/services/app/secure/getuser?email="+mEmail;
+            String url = ip+"/services/app/secure/getuser?email="+mEmail+"";
             Authenticator.setDefault(new Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
@@ -355,7 +355,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 e.printStackTrace();
                 return false;}
             catch (Exception e){
-                System.out.println((Thread.currentThread().getStackTrace()));
+                e.printStackTrace();
                 return false;}
 
 
