@@ -59,7 +59,6 @@ public class MainClass {
         return em.createQuery("SELECT u from User u",User.class).getResultList();
     }
     
-    
     // Search for a user by first or last name
     @GET
     @Path("finduser")
@@ -70,9 +69,9 @@ public class MainClass {
     
     // Return a user based on ID
     @GET
-    @Path("getuser")
-    public User getUser(@QueryParam("id") Long userID) {
-        return (User) em.createQuery("SELECT u FROM User u WHERE u.id = :paramID").setParameter("paramID", userID).getSingleResult();
+    @Path("secure/getuser")
+    public List<User> getUser(@QueryParam("email") String email) {
+        return em.createQuery("SELECT u FROM User u WHERE LOWER(u.email) LIKE LOWER(:paramID)").setParameter("paramID", email).getResultList();
     }
     
     // Create user in db, not as admin, but active
