@@ -31,11 +31,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.Type;
 import java.net.Authenticator;
 import java.net.MalformedURLException;
 import java.net.PasswordAuthentication;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -53,6 +67,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     Server s = new Server();
     final String ip = s.serverUrl();
+    static SimpleDateFormat DF = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+    static SimpleDateFormat DFSHORT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -348,6 +364,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                     //User u = (User)l.get(0);
                     //SharedRespources.getInstance().setUser(u);
+                    List<User> result = new ArrayList<>();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+
+                    GsonBuilder builder = new GsonBuilder();
+                    builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+                        @Override
+                        public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                            String value = json.getAsString();
+                            try {
+                                return value.length() > 25 ? DF.parse(value) : DFSHORT.parse(value);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            return null;
+                        }
+                    });
+                    Gson gson = builder.create();
+                    User[] users = gson.fromJson(br, User[].class);
+                    result.addAll(Arrays.asList(users));
+                    SharedRespources.getInstance().setUser(result.get(0));
                     return true;
                 }
             }
