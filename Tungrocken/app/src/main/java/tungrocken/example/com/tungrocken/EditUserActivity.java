@@ -88,7 +88,7 @@ public class EditUserActivity extends AppCompatActivity {
 
                             Intent a = new Intent(EditUserActivity.this, MyPageActivity.class);
                             User u = users.get(0);
-                            a.putExtra("bruker", u);
+                            SharedRespources.getInstance().setUser(u);
                             startActivity(a);
                         }
                     }).execute(ip+"/services/app/edituser"+Data+"");
