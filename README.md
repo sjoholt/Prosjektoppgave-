@@ -2,10 +2,10 @@
 ID303911 - Mobile og distribuerte applikasjoner @ NTNU i Ålesund
 
 Dette er en gruppeprosjektoppgave for studentene:
-Sindre Sjøholt
-Thomas Robert Tennøy
-Fredrik Mikael Valderhaug
-Gaute Hjellbakk Pettersen
+- Sindre Sjøholt
+- Thomas Robert Tennøy
+- Fredrik Mikael Valderhaug
+- Gaute Hjellbakk Pettersen
 
 
 Målsetningen med dette prosjektet har vært lage en Android-applikasjon, med tilhørende serverløsning for datakommunikasjon.
