@@ -5,14 +5,11 @@ import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,13 +17,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.List;
-
 import tungrocken.example.com.tungrocken.Loaders.LoadUsers;
 import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.Server;
 import tungrocken.example.com.tungrocken.domain.User;
+
+/**
+ * Created by Team Tungrocken
+ */
 
 public class EditUserActivity extends AppCompatActivity {
 
@@ -63,7 +62,6 @@ public class EditUserActivity extends AppCompatActivity {
         editInfo.setText(Html.fromHtml("<h2>Her kan du endre dine brukerdata.</h2><br>Alle feltene <strong>må</strong> være utfylte." +
                 "<br>Du <strong>må</strong> skrive inn passord, enten ditt gamle - eller et nytt!"));
 
-        // knapp for å registrere en bruker
         final Button editButton = (Button) findViewById(R.id.edit_u_btn);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,13 +77,10 @@ public class EditUserActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                 }else {
-
                     String Data = "?email="+email+"&firstname="+firstName+"&lastname="+lastName+"&password="+password+"";
-
                     new LoadUsers(new LoadUsers.Callback() {
                         @Override
                         public void update(final List<User> users) {
-
                             Intent a = new Intent(EditUserActivity.this, MyPageActivity.class);
                             User u = users.get(0);
                             SharedRespources.getInstance().setUser(u);
@@ -95,12 +90,10 @@ public class EditUserActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem menuItem = menu.findItem(R.id.app_bar_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
@@ -112,9 +105,6 @@ public class EditUserActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         // Håndtering av visning og klikk på hamburgermeny
@@ -129,8 +119,6 @@ public class EditUserActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
-
 }

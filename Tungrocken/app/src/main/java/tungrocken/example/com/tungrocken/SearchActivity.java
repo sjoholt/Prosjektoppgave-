@@ -17,13 +17,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import java.util.List;
 import tungrocken.example.com.tungrocken.Loaders.LoadArticles;
 import tungrocken.example.com.tungrocken.adapters.SearchAdapter;
 import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.Server;
+
+/**
+ * Created by Team Tungrocken
+ */
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -52,7 +55,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void showResult(String query){
-
         Server s = new Server();
         final String ip = s.serverUrl();
 
@@ -65,37 +67,29 @@ public class SearchActivity extends AppCompatActivity {
         new LoadArticles(new LoadArticles.Callback() {
             @Override
             public void update(final List<Article> articles) {
-
                 if(articles.size()==0){
-                    Toast toast = Toast.makeText(SearchActivity.this, "Vi beklager, men vi kunne ikke finne noe på ditt søk. Vennligst prøv en gang til...", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(SearchActivity.this, "Vi beklager, men vi kunne ikke finne noe på ditt søk...", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER, Gravity.CENTER_HORIZONTAL, Gravity.CENTER_VERTICAL);
                     toast.show();
-
                 }else {
                     SearchAdapter test = new SearchAdapter(getApplicationContext(), articles);
                     recyclerView.setAdapter(test);
-
                     test.setOnClickListener((SearchAdapter.OnClickListener) position -> {
-
                         Log.i("this", articles.get(position).getArticleId().toString());
                         Intent i = new Intent(SearchActivity.this, ArticleActivity.class);
 
-                        // bundle sender over info fra en activity til en annen
                         Bundle bundle = new Bundle();
                         bundle.putLong("aID", articles.get(position).getArticleId());
                         i.putExtras(bundle);
-
                         startActivity(i);
                     });
                 }
-
             }
         }).execute(ip + "/services/app/findarticle?search="+query+"");
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem menuItem = menu.findItem(R.id.app_bar_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
@@ -107,9 +101,6 @@ public class SearchActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         // Håndtering av visning og klikk på hamburgermeny
@@ -124,7 +115,6 @@ public class SearchActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

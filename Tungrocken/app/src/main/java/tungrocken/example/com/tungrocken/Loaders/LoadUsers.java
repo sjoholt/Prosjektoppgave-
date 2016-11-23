@@ -56,7 +56,6 @@ public class LoadUsers extends AsyncTask<String, Long, List<User>> {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-
                     return null;
                 }
             });
@@ -70,7 +69,6 @@ public class LoadUsers extends AsyncTask<String, Long, List<User>> {
                 con.disconnect();
             }
         }
-
         return result;
     }
 

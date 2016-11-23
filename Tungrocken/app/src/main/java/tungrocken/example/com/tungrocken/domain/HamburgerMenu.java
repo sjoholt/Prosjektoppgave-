@@ -2,15 +2,8 @@ package tungrocken.example.com.tungrocken.domain;
 
 import android.content.Context;
 import android.content.Intent;
-
-import java.io.IOException;
 import java.net.Authenticator;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.PasswordAuthentication;
-import java.net.URL;
-import java.util.Date;
-
 import tungrocken.example.com.tungrocken.LoginActivity;
 import tungrocken.example.com.tungrocken.MainActivity;
 import tungrocken.example.com.tungrocken.MyPageActivity;
@@ -57,9 +50,7 @@ public class HamburgerMenu {
                 Intent i3 = new Intent(c, LoginActivity.class);
                 result = i3;
                 break;
-
         }
-
         return result;
     }
 
@@ -71,5 +62,4 @@ public class HamburgerMenu {
             }
         });
     }
-
 }

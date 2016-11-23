@@ -20,6 +20,10 @@ import java.util.Date;
 import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.User;
 
+/**
+ * Created by Team Tungrocken
+ */
+
 public class MyPageActivity extends AppCompatActivity {
 
     @Override
@@ -39,18 +43,14 @@ public class MyPageActivity extends AppCompatActivity {
             }
         });
 
-        // Tar i mot hvilken bruker som er pålogget, sendt gjennom intenten
-        Intent intent = getIntent();
-        //User u = (User) intent.getSerializableExtra("bruker");
+        // Henter hvilken bruker som er pålogget, og kjører metode for å vise informasjon
         User u = SharedRespources.getInstance().getUser();
         insertUserInfo(u);
 
-        // knapp for å registrere en bruker
         final Button editButton = (Button) findViewById(R.id.edit_u_btn);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v3) {
-
                 Intent editData = new Intent(MyPageActivity.this, EditUserActivity.class);
                 editData.putExtra("bruker", u);
                 startActivity(editData);
@@ -60,7 +60,6 @@ public class MyPageActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem menuItem = menu.findItem(R.id.app_bar_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
@@ -72,9 +71,6 @@ public class MyPageActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         // Håndtering av visning og klikk på hamburgermeny
@@ -89,7 +85,6 @@ public class MyPageActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -134,7 +129,6 @@ public class MyPageActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE d. MMMM YYYY");
         Date date = u.getCreated();
         String sDate= sdf.format(date);
-
         datecreated2.setText(Html.fromHtml(sDate));
     }
 

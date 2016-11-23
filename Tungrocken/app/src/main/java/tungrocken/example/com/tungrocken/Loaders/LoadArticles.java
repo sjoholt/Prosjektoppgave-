@@ -60,7 +60,6 @@ public class LoadArticles extends AsyncTask<String,Long,List<Article>> {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-
                     return null;
                 }
             });
@@ -72,7 +71,6 @@ public class LoadArticles extends AsyncTask<String,Long,List<Article>> {
         } finally {
             if(con != null) {con.disconnect();}
         }
-
         return result;
     }
 

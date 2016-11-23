@@ -15,6 +15,10 @@ import tungrocken.example.com.tungrocken.R;
 import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.Server;
 
+/**
+ * Created by Team Tungrocken on 22.11.2016.
+ */
+
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyGridViewHolder> {
 
     Server s = new Server();
@@ -24,13 +28,44 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyGridViewHold
     OnClickListener listener = position -> {};
     Context context;
 
-    public interface OnClickListener {
-        void onClick(int position);
-    }
-
     public HomeAdapter(@NonNull Context context, @NonNull List<Article> articles) {
         this.context = context;
         this.articles = articles;
+    }
+
+    @Override
+    public MyGridViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        int layout = viewType;
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
+        return new MyGridViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(MyGridViewHolder holder, int position) {
+        Article article = articles.get(position);
+        holder.title.setText(Html.fromHtml(article.getTitle()));
+        holder.ingress.setText(Html.fromHtml(article.getIngress()));
+        holder.content.setVisibility(View.GONE);
+        holder.youtubeUrl.setVisibility(View.GONE);
+        Picasso.with(context).load(ip + article.getPhotoUrl()).into(holder.photoUrl);
+    }
+
+    @Override
+    public int getItemCount() {
+        return articles.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return R.layout.homearticles;
+    }
+
+    public void setOnClickListener(@NonNull OnClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnClickListener {
+        void onClick(int position);
     }
 
     public class MyGridViewHolder extends RecyclerView.ViewHolder {
@@ -51,38 +86,5 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyGridViewHold
             this.youtubeUrl = (TextView) view.findViewById(R.id.youtubeUrl);
             this.photoUrl = (ImageView) view.findViewById(R.id.photoUrl);
         }
-    }
-
-    @Override
-    public MyGridViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        int layout = viewType;
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
-        return new MyGridViewHolder(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(MyGridViewHolder holder, int position) {
-        Article article = articles.get(position);
-
-        holder.title.setText(Html.fromHtml(article.getTitle()));
-        holder.ingress.setText(Html.fromHtml(article.getIngress()));
-        holder.content.setVisibility(View.GONE);
-        holder.youtubeUrl.setVisibility(View.GONE);
-        Picasso.with(context).load(ip + article.getPhotoUrl()).into(holder.photoUrl);
-    }
-
-    @Override
-    public int getItemCount() {
-        return articles.size();
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-
-        return R.layout.homearticles;
-    }
-
-    public void setOnClickListener(@NonNull OnClickListener listener) {
-        this.listener = listener;
     }
 }

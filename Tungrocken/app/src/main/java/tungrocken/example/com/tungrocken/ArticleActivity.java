@@ -1,9 +1,9 @@
 package tungrocken.example.com.tungrocken;
+
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -13,25 +13,23 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.squareup.picasso.Picasso;
-
-import java.io.UnsupportedEncodingException;
 import java.util.List;
-
 import tungrocken.example.com.tungrocken.Loaders.LoadArticles;
 import tungrocken.example.com.tungrocken.domain.Article;
 import tungrocken.example.com.tungrocken.domain.HamburgerMenu;
 import tungrocken.example.com.tungrocken.domain.Server;
 
-
+/**
+ * Created by Team Tungrocken
+ */
 
 public class ArticleActivity extends AppCompatActivity {
 
-    public static final String KEY = "AIzaSyC3BB6nhsBUlPGCJNRLSqCPg8vgr65Lqqk";
+    public static final String KEY = "AIzaSyC3BB6nhsBUlPGCJNRLSqCPg8vgr65Lqqk";  // Activation key for YouTube API
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +87,8 @@ public class ArticleActivity extends AppCompatActivity {
         }).execute(ip+"/services/app/secure/getarticle?id="+id+"");
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem menuItem = menu.findItem(R.id.app_bar_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
@@ -104,9 +100,6 @@ public class ArticleActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         // Håndtering av visning og klikk på hamburgermeny
@@ -122,8 +115,7 @@ public class ArticleActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-        //Using Standalone YoutubeAPI to play a video from Youtube. Using SQL to get a youtubeURL, and our personal youtubeAPI key. This feature starts a new activity, with 6 inputs.
-        //
+        //Using Standalone YouTubeAPI to play a video from YouTube
     public void playVideo(String youtubeID) {
         Intent intent = YouTubeStandalonePlayer.createVideoIntent(this, KEY, youtubeID, 0, true, true);
         startActivity(intent);
@@ -131,7 +123,7 @@ public class ArticleActivity extends AppCompatActivity {
 
     public void youtubeInformation(){
         TextView about = (TextView)findViewById(R.id.aboutContent);
-        about.setText(Html.fromHtml("<strong>Trykk på bildet, se hva som skjer! </strong>"));
+        about.setText(Html.fromHtml("<strong>Klikk på bildet for å starte video!</strong>"));
     }
 }
 
