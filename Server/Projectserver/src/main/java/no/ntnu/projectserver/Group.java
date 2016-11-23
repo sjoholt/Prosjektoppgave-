@@ -1,4 +1,3 @@
-
 package no.ntnu.projectserver;
 
 import java.io.Serializable;

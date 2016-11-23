@@ -1,20 +1,16 @@
-
 package no.ntnu.projectserver;
 
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * Data class holding information about article objects
@@ -29,17 +25,13 @@ public class Article implements Serializable {
     
     @Id @GeneratedValue
     Long articleId;
-    
     String title;
     String ingress;
+    
     @Column(columnDefinition="clob")
     String content;
     String photoUrl;
     String youtubeUrl;
-    
-    //@XmlJavaTypeAdapter(User.UserAdapter.class)
-    //@ManyToOne(optional = false,cascade = CascadeType.PERSIST)
-    //User owner;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     Date datePosted = new Date();
@@ -55,7 +47,7 @@ public class Article implements Serializable {
         this.youtubeUrl = youtubeUrl;
     }
     
-    // Following is a basic set of setters and getters methods
+    // Following is a standard set of setter and getter methods
 
     public Long getArticleId() {
         return articleId;
@@ -104,5 +96,4 @@ public class Article implements Serializable {
     public void setYoutubeUrl(String youtubeUrl) {
         this.youtubeUrl = youtubeUrl;
     }
-    
 }

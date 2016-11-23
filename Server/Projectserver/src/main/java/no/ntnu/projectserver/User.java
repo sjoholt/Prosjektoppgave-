@@ -1,10 +1,8 @@
-
 package no.ntnu.projectserver;
 
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -12,7 +10,6 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
  * Data class holding information about user objects
@@ -21,22 +18,19 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-
-//husk å legge til dependency for entity! (drop and create)
 @Entity
 @Table(name = "APPUSER")
 
 public class User implements Serializable {
-   // @Id @GeneratedValue
-   // Long id;
+    
     @Id
     @NotNull String email;
-    String sessionId;
     String password;
     String firstName;
     String lastName;
-    boolean isAdmin;
-    boolean active;
+    String sessionId; // unused after reconstruction
+    boolean isAdmin; // unused after reconstruction
+    boolean active; // unused after reconstruction
     
     @Temporal(javax.persistence.TemporalType.DATE)
     Date created = new Date();
@@ -54,8 +48,8 @@ public class User implements Serializable {
         sessionId = ""+0;
     }
     
+    // Following is a standard set of setter and getter methods
     
-    // Following is a basic set of setters and getters methods
     public String getSessionId()
     {
         return sessionId;
@@ -117,6 +111,4 @@ public class User implements Serializable {
     public Date getCreated() {
         return created;
     }
-
-
 }
