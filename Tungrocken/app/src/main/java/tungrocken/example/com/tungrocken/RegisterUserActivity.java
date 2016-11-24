@@ -66,10 +66,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                         @Override
                         public void update(final List<User> users) {
                             if(users.isEmpty() == false) {
-                                Intent a = new Intent(RegisterUserActivity.this, LoginActivity.class);
-                                User u = users.get(0);
-                                a.putExtra("bruker", u);
-                                startActivity(a);
+                                finish();
                             } else {
                                 Toast toast = Toast.makeText(RegisterUserActivity.this, "Det er allerede registrert en bruker med denne epost-addressen!",Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER, Gravity.CENTER_HORIZONTAL, Gravity.CENTER_VERTICAL);

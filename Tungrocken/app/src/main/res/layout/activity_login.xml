@@ -66,19 +66,21 @@
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
+
             <Button
-                android:text="registerUser"
-                android:layout_width="wrap_content"
+                android:text="NY BRUKER"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/articlesBtn"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="62dp"
-                android:id="@+id/reg_btn" />
+                android:layout_alignParentStart="false"
+                android:layout_marginTop="16dp"
+                android:id="@+id/reg_btn"
+                style="?android:textAppearanceSmall"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
