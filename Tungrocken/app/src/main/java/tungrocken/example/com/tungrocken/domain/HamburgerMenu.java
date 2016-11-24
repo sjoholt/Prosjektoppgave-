@@ -47,7 +47,7 @@ public class HamburgerMenu {
 
             case R.id.action_menu3:
                 logoutMethod();
-                Intent i3 = new Intent(c, LoginActivity.class);
+                Intent i3 = new Intent(c, MainActivity.class);
                 result = i3;
                 break;
         }
@@ -61,5 +61,6 @@ public class HamburgerMenu {
                 return new PasswordAuthentication("", "".toCharArray());
             }
         });
+        SharedRespources.getInstance().setUser(null);
     }
 }
