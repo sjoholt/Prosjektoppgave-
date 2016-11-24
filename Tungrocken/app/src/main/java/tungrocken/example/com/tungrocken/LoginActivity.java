@@ -4,19 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -49,7 +40,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import tungrocken.example.com.tungrocken.domain.Server;
 import tungrocken.example.com.tungrocken.domain.User;
-import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * Created by Team Tungrocken
@@ -63,32 +53,21 @@ public class LoginActivity extends AppCompatActivity{
     static SimpleDateFormat DFSHORT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
 
     /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
-
-    // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -120,15 +99,10 @@ public class LoginActivity extends AppCompatActivity{
                 startActivity(a);
             }
         });
-
-
     }
 
-
-
-
     /**
-     * Attempts to sign in or register the account specified by the login form.
+     * Attempts to sign in to the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
@@ -136,7 +110,6 @@ public class LoginActivity extends AppCompatActivity{
         if (mAuthTask != null) {
             return;
         }
-
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
@@ -180,12 +153,10 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() > 4;
     }
 
@@ -195,8 +166,7 @@ public class LoginActivity extends AppCompatActivity{
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
+        // for very easy animations. If available, use these APIs to fade-in the progress spinner.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
@@ -218,31 +188,22 @@ public class LoginActivity extends AppCompatActivity{
                 }
             });
         } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
+            // The ViewPropertyAnimator APIs are not available, so simply show and hide the relevant UI components.
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-
-
-
 
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-
         mEmailView.setAdapter(adapter);
     }
 
-
-
-
     /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
+     * Represents an asynchronous login/registration task used to authenticate the user.
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -265,7 +226,6 @@ public class LoginActivity extends AppCompatActivity{
             });
 
             try {
-
                 HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
                 connection.connect();
                 int responseCode = connection.getResponseCode();
@@ -273,9 +233,7 @@ public class LoginActivity extends AppCompatActivity{
                 if(responseCode == 401) {
                     return false;
                 }
-                else
-                {
-
+                else {
                     List<User> result = new ArrayList<>();
                     BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
 
@@ -289,7 +247,6 @@ public class LoginActivity extends AppCompatActivity{
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-
                             return null;
                         }
                     });
@@ -301,13 +258,11 @@ public class LoginActivity extends AppCompatActivity{
                 }
             }
             catch (MalformedURLException e){
-
                 e.printStackTrace();
                 return false;}
             catch (Exception e){
                 e.printStackTrace();
                 return false;}
-
         }
 
         @Override
@@ -331,4 +286,3 @@ public class LoginActivity extends AppCompatActivity{
         }
     }
 }
-
