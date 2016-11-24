@@ -433,12 +433,5 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
         }
     }
-
-    @Override
-    public void onBackPressed() {
-        Intent i = new Intent(LoginActivity.this,MainActivity.class);
-        startActivity(i);
-        super.onBackPressed();
-    }
 }
 
