@@ -78,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(i);
                 });
             }
-        }).execute(ip + "/services/app/articles");
+        }).execute(ip + "/services/app/secure/articles");
     }
 
     @Override

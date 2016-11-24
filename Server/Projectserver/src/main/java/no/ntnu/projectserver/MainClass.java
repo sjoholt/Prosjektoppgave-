@@ -44,7 +44,7 @@ public class MainClass {
      * @return a list of all users
      */
     @GET
-    @Path("users")
+    @Path("secure/users")
     public List<User> getAllUsers() {
         return em.createQuery("SELECT u from User u",User.class).getResultList();
     }
@@ -130,7 +130,7 @@ public class MainClass {
      * @return list of all articles
      */
     @GET
-    @Path("articles")
+    @Path("secure/articles")
     public List<Article> getArticles() {
         return em.createQuery("SELECT a FROM Article a order by a.articleId desc", Article.class).getResultList();
     }
@@ -141,7 +141,7 @@ public class MainClass {
      * @return list of articles found
      */
     @GET
-    @Path("findarticle")
+    @Path("secure/findarticle")
     public List<Article> findArticle(@QueryParam("search") String articleParam) {
         articleParam = articleParam.toLowerCase();
         return em.createQuery("SELECT u FROM Article u WHERE LOWER(u.title) LIKE LOWER(:articleName) OR LOWER(u.ingress) LIKE LOWER(:articleName) OR LOWER(u.content) LIKE LOWER(:articleName)").setParameter("articleName","%"+articleParam+"%").getResultList();
@@ -157,7 +157,7 @@ public class MainClass {
      * @throws UnsupportedEncodingException
      */
     @GET
-    @Path("edituser")
+    @Path("secure/edituser")
     public List<User> editUser(@QueryParam("email") String email,@QueryParam("firstname") String fname,@QueryParam("lastname") String lname, @QueryParam("password") String password) throws UnsupportedEncodingException{
         User u = em.find(User.class, email);
         try {

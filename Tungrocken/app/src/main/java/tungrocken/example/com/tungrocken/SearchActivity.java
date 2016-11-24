@@ -85,7 +85,7 @@ public class SearchActivity extends AppCompatActivity {
                     });
                 }
             }
-        }).execute(ip + "/services/app/findarticle?search="+query+"");
+        }).execute(ip + "/services/app/secure/findarticle?search="+query+"");
     }
 
     @Override

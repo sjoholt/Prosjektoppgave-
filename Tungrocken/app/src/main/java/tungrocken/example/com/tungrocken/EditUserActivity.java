@@ -86,7 +86,7 @@ public class EditUserActivity extends AppCompatActivity {
                             SharedRespources.getInstance().setUser(u);
                             startActivity(a);
                         }
-                    }).execute(ip+"/services/app/edituser"+Data+"");
+                    }).execute(ip+"/services/app/secure/edituser"+Data+"");
                 }
             }
         });
