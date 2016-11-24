@@ -61,5 +61,6 @@ public class HamburgerMenu {
                 return new PasswordAuthentication("", "".toCharArray());
             }
         });
+        SharedRespources.getInstance().setUser(null);
     }
 }
