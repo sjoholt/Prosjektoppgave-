@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import tungrocken.example.com.tungrocken.Loaders.LoadArticles;
 import tungrocken.example.com.tungrocken.domain.Article;
@@ -83,6 +86,11 @@ public class ArticleActivity extends AppCompatActivity {
                     }
                 });
                 youtubeInformation();
+                TextView dPosted = (TextView)findViewById(R.id.datePosted);
+                SimpleDateFormat sdf = new SimpleDateFormat("EEEE d. MMMM YYYY");
+                Date date = article.getDatePosted();
+                String sDate= sdf.format(date);
+                dPosted.setText(Html.fromHtml("<strong>Publisert: </strong>"+sDate));
             }
         }).execute(ip+"/services/app/secure/getarticle?id="+id+"");
     }
