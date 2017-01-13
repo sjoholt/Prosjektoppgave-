@@ -269,7 +269,6 @@ public class LoginActivity extends AppCompatActivity{
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
             if (success) {
                 Intent i = new Intent(LoginActivity.this,HomeActivity.class);
                 startActivity(i);
